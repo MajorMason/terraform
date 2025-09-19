@@ -10,6 +10,10 @@ variable "environment" {
   type = string
 }
 
+variable "keyvault" {
+  type = string
+}
+
 variable "keyvault_sku_name" {
   type = string
 }

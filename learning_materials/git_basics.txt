@@ -1,7 +1,7 @@
 Start by installing git from the official git website (don't try to use the posh module).
 Once git is installed, restart VSCode.
 
-Once VSCode is up, run "git init" to initialize your directory you're working in.
+Once VSCode is up, run "git init -b main" to initialize your directory you're working in.
 Then, use "git add ." to track files between VSCode and the github repository.
 
 Finally, use "git commit -m "commit message as desired".
@@ -12,7 +12,10 @@ make sure to add the following lines at the bottom (with indentations):
     name = (your exact name as listed on github)
     email = (email associated with your github login)
 
-And you're done! You should be ready for git commits now to your github repository.
+Now we get to push our code to the repository using this command:
+git push --set-upstream terraform main -f
+
+And you're done! You should be ready for "git pushes" now to your github repository.
 
 Tip: If you tried installing posh-git but then tried uninstalling the module and receieve
 and error message each POSH startup, just look up your variable $PROFILE and track down the
