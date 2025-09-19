@@ -1,0 +1,19 @@
+A single organization can have as many tenants as it wants, its simply an object associated
+with a person or business unit who will pay for everything.
+
+Subscriptions can be viewed as a "billing boundary" but are also a means of a security boundary.
+The subscriptions can either be "pay as you go" or a "reserved instance".
+
+A subscription will "trust" (in a downward fashion) a particular directory which is the tenant.
+The Entra ID Tenant does not live in a subscription.
+Remember, an Entra ID tenant only contains users and groups (and software objects for app reg).
+
+You grant role assignments, set policies, set budgets and RBAC at the subscription level.
+A subscription can contain resource groups that we provision with Terraform.
+
+Recall back to previous DevOps jobs, where for billing purposes you'll have different subscriptions
+for separating your environments such as: dev, test, and prod.
+
+NOTE: Each subscription can only trust a single directory (Entra ID tenant), while
+multiple subscriptions can trust the same Entra ID tenant, you cannot have multiple Entra ID tenants
+assigned to a single subscription.

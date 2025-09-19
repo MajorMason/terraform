@@ -1,0 +1,6 @@
+We can use a folder for each environment that contains a backend config file and a tfvars file.
+Our automated pipelines then do for example:
+
+Terraform init —backend-config=/env/dev.conf
+
+Terraform apply —var-file=/env/dev.tfvars

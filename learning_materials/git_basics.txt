@@ -1,0 +1,23 @@
+Start by installing git from the official git website (don't try to use the posh module).
+Once git is installed, restart VSCode.
+
+Once VSCode is up, run "git init" to initialize your directory you're working in.
+Then, use "git add ." to track files between VSCode and the github repository.
+
+Finally, use "git commit -m "commit message as desired".
+Note: If you receive an error "Author identity unknown" then modify the gitconfig file located
+in the directory you installed Git in (default is ProgramFiles\Git) and in that gitconfig file,
+make sure to add the following lines at the bottom (with indentations):
+[user]
+    name = (your exact name as listed on github)
+    email = (email associated with your github login)
+
+And you're done! You should be ready for git commits now to your github repository.
+
+Tip: If you tried installing posh-git but then tried uninstalling the module and receieve
+and error message each POSH startup, just look up your variable $PROFILE and track down the
+file it lists, then remove the "import git-module" from your profile file.
+
+NOTE: If gitignore is failing to ignore large files such as the included terraform provider file or
+another executable, you'll need to delete the "git" folder from the project using file explorer
+(making sure to reveal hidden items) then run a "git init" to reinitialize the directory.

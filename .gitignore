@@ -1,0 +1,12 @@
+# Ignore Terraform directories and plugins
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+terraform.tfvars
+crash.log
+*.log
+*.backup
+*.override.tf
+terraform-provider-*
+*.exe

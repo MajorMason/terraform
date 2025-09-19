@@ -1,0 +1,18 @@
+Terraform Registry
+https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
+
+
+Chatper 1 - FreeCodeCamp Terraform Azure Course
+https://www.youtube.com/watch?v=V53AHWun17s
+
+Chatper 2 - Using Terraform with Azure
+https://www.youtube.com/watch?v=JKVkblsp3cM
+
+Chapter 3 - DevOps Master Class Part 6 IaC
+https://www.youtube.com/watch?v=8AgEwM8RhAU
+
+Mastering Reusable Code
+https://balkrishan-nagpal.medium.com/mastering-multi-environment-azure-deployments-with-terraform-b2bbe252fd9e
+
+Mastering Reusable Code Part 2
+https://spacelift.io/blog/terraform-files
