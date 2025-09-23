@@ -3,4 +3,4 @@ Our automated pipelines then do for example:
 
 Terraform init —backend-config=/env/dev.conf
 
-Terraform apply —var-file=/env/dev.tfvars
+Terraform apply —var-file=/environments/dev.tfvars

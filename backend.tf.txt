@@ -2,10 +2,9 @@
 #an Azure storage account, as denoted below
 terraform {
   backend "azurerm" {
-    resource_group_name = "dev-rg-terraform-state"
+    resource_group_name  = "dev-rg-terraform-state"
     storage_account_name = "statestorage"
-    container_name = "tfstate"
-    key = "dev.terraform.tfstate"
+    container_name       = "tfstate"
+    key                  = "dev.terraform.tfstate"
   }
 }
-#The key is out unique state file

@@ -1,13 +1,21 @@
-#This is where we define input variables for the entire project
+#This is where we define global input variables for the entire project
 #While the "type" line isn't required, its recommended to have so that others know what type
 #of string the variable is
 variable "location" {
-  type        = string
   description = "The Azure region to deploy to"
+  type        = string
+  default     = "East US"
 }
 
 variable "environment" {
-  type = string
+  description = "Environment name (dev, test or prod)"
+  default     = "dev"
+  type        = string
+}
+
+variable "name_prefix" {
+  description = "Prefix for naming all resources"
+  type        = string
 }
 
 variable "keyvault" {
@@ -19,6 +27,6 @@ variable "keyvault_sku_name" {
 }
 
 variable "storage_account_type" {
-  type        = string
   description = "Storage account SKU to be lowest tier"
+  type        = string
 }

@@ -9,7 +9,7 @@ resource "azurerm_key_vault" "dev-keyvault" {
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
 
-  sku_name = var.keyvault.sku.name
+  sku_name = var.keyvault_sku_name
 
   access_policy = {
     tenant_id = data.azurerm_client_config.current.tenant_id
