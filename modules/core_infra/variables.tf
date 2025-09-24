@@ -13,11 +13,6 @@ variable "environment" {
   type        = string
 }
 
-variable "name_prefix" {
-  description = "Prefix for naming all resources"
-  type        = string
-}
-
 variable "keyvault" {
   type = string
 }

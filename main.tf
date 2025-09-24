@@ -2,7 +2,6 @@
 #the actual resources themselves such as resource group, vnet, keyvault, etc.
 module "core_infra" {
   source               = "./modules/core_infra"
-  name_prefix          = var.name_prefix
   environment          = var.environment
   location             = var.location
   keyvault             = var.keyvault
