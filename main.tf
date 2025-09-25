@@ -11,9 +11,11 @@ module "resource_group" {
 
 #Remember that string names like "vnet_name" is declared in the global variables.tf file
 module "virtual_network" {
-  source             = "./modules/core_infra/main.tf"
-  environment        = var.environment
-  location           = var.location
-  vnet_name          = "${var.environment}-vnet"
-  vnet_address_space = ["10.10.0.0/27"]
+  source                = "./modules/core_infra/main.tf"
+  environment           = var.environment
+  location              = var.location
+  vnet_name             = "${var.environment}-vnet"
+  vnet_address_space    = ["10.10.0.0/27"]
+  subnet_name           = "${var.environment}-subnet"
+  subnet_address_prefix = var.subnet_address_prefix
 }
