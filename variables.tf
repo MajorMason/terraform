@@ -9,7 +9,6 @@ variable "location" {
 
 variable "environment" {
   description = "Environment name (dev, test or prod)"
-  default     = "dev"
   type        = string
 }
 
@@ -18,8 +17,7 @@ variable "keyvault" {
 }
 
 variable "keyvault_sku_name" {
-  type    = string
-  default = "standard"
+  type = string
 }
 
 variable "storage_account_type" {

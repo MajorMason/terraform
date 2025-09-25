@@ -1,4 +1,3 @@
-#This is where we define global input variables for the entire project
 #While the "type" line isn't required, its recommended to have so that others know what type
 #of string the variable is
 variable "location" {
@@ -39,4 +38,8 @@ variable "eviction_policy" {
 variable "max_bid_price" {
   description = "The maximum price you're willing to pay (in USD) for the VM's hourly rate"
   type = number
+}
+
+variable "vnet_name" {
+  type = string
 }
