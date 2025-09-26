@@ -9,5 +9,5 @@ data "azurerm_public_ip" "dev-ip-data" {
 #Run the command "terraform apply -refresh-only" to leverage the data source to display the data
 data "azurerm_key_vault_secret" "dev-pass" {
   name         = "dev-pass"
-  key_vault_id = var.keyvault
+  key_vault_id = var.keyvault_name
 }

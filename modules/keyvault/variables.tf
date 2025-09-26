@@ -11,7 +11,7 @@ variable "environment" {
 }
 
 #KeyVault
-variable "keyvault" {
+variable "keyvault_name" {
   type = string
 }
 

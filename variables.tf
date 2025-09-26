@@ -36,7 +36,7 @@ variable "allocation_method" {
 }
 
 #KeyVault
-variable "keyvault" {
+variable "keyvault_name" {
   type = string
 }
 

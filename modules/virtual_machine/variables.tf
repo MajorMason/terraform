@@ -44,7 +44,7 @@ variable "custom_data" {
 }
 
 variable "network_interface_ids" {
-  type = string(list)
+  type = string
 }
 
 variable "nic_ids" {

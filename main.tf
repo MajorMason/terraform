@@ -32,3 +32,10 @@ module "virtual_machine" {
   custom_data           = filebase64("linux_template.tpl")
   storage_account_type  = var.storage_account_type
 }
+
+ #Keyvault
+ module "keyvault" {
+  source = "./modules/keyvault"
+  keyvault_name = var.keyvault_name
+  keyvault_sku_name = var.keyvault_sku_name
+ }
