@@ -21,15 +21,43 @@ https://developer.hashicorp.com/terraform/tutorials/modules/module
 What is a Terraform Module?
 A Terraform module is a set of Terraform configuration files in a single directory.
 Even a simple configuration consisting of a single directory with one or more .tf files is a module.
-When you run Terraform commands directly from such a directory, it is considered the root module.
 So in this sense, every Terraform configuration is part of a module. You may have a simple set of
 Terraform configuration files such as:
-.
-├── LICENSE
-├── README.md
-├── main.tf
-├── variables.tf
-├── outputs.tf
 
-In this case, when you run terraform commands from within the minimal-module directory,
-the contents of that directory are considered the root module.
+Terraform (project folder)
+|-modules\core_infra (folder\folder)
+|---keyvault.tf
+|---main.tf
+|---variables.tf
+|---virtual_machine.nic.tf
+|---virtual_machine.tf
+|-main.tf
+|-variables.tf
+
+Notice how we are treating the single directory of "modules\core_infra" as one module.
+Within that directory of "modules\core_infra" we are calling the nestled "main.tf" file from our
+root directory's main.tf file. Within the root directory main.tf file that's where we are
+calling our individual resources (which are in the nestled main.tf file) in the form of
+module code blocks like below:
+
+module "virtual_network" {
+  source             = "./modules/core_infra/main.tf"
+  environment        = var.environment
+  location           = var.location
+  vnet_name          = "${var.environment}-vnet"
+  vnet_address_space = var.address_space
+}
+
+Think of each module codeblock as the actual resource with all the same/similar string names with
+the only exception being "source".
+
+When it comes to variables, our nestled variables file serves our module configuration files.
+However, let's say we had configuration files outside of that module (directory), then we'd rely
+on our root variables.tf file which acts as a global reference of broad variables used across
+multiple areas (think broad variables like location).
+
+NOTE: If core_infra contains all your resources and all their variables, then every module call is
+expected to provide every variable declared in that folder, even if the resource doesn’t use it.
+So when you call the virtual_network module, Terraform sees that keyvault_sku_name is declared in
+core_infra/variables.tf, and assumes it’s required—even though your virtual network doesn’t
+care about Key Vault.

@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "vnet" {
   name                = "${var.environment}-vnet"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  address_space       = ["10.10.0.0/27"]
+  address_space       = var.address_space
 
   tags = {
     environment = var.environment
@@ -28,5 +28,5 @@ resource "azurerm_subnet" "subnet" {
   name                 = "${var.environment}-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = ["10.10.1.0/27"]
+  address_prefixes     = var.address_prefix
 }

@@ -7,13 +7,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location              = azurerm_resource_group.rg.location
   size                  = var.vm_size
   admin_username        = "adminuser"
-  network_interface_ids = [azurerm_network_interface.dev-nic.id]
+  network_interface_ids = [var.nic_ids[var.environment]]
   eviction_policy       = var.eviction_policy
   max_bid_price         = var.max_bid_price
 
   #Note that the file "customdata.tpl" is a template file indicated by the file extension "tpl"
   #Template files are very nice to pass in a series of commands for things like VMs
-  custom_data = filebase64("customdata.tpl")
+  custom_data = filebase64("linux_template.tpl")
 
   #The key pair is being referenced using a Terraform function "file" in tandem with
   #parenthesis. This reads the devazurekey.pub file and substitutes the key value in the code,

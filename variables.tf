@@ -24,3 +24,11 @@ variable "storage_account_type" {
   description = "Storage account SKU to be lowest tier"
   type        = string
 }
+
+variable "nic_ids" {
+  type = map(string)
+  default = {
+    dev  = "nic-dev"
+    prod = "nic-prod"
+  }
+}
