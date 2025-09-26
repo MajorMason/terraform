@@ -1,6 +1,6 @@
 #Resource Group module
 module "resource_group" {
-  source      = "./modules/core_infra"
+  source      = "./modules/resource_group"
   name        = "${var.environment}-rg"
   location    = var.location
   environment = var.environment
@@ -9,7 +9,7 @@ module "resource_group" {
 #Vnet module
 #Remember that string names like "vnet_name" is declared in the modules' variables.tf file
 module "virtual_network" {
-  source             = "./modules/core_infra"
+  source             = "./modules/network"
   name               = "${var.environment}-vnet"
   location           = var.location
   vnet_name          = "${var.environment}-vnet"

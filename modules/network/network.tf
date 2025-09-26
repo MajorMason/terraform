@@ -1,14 +1,3 @@
-#The resource group helps to contain our resources based off location,
-#and can be categorized using the environment tag
-#All our resources are using the reference name "rg" in their rsg name lines
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.environment}-rg"
-  location = var.location
-  tags = {
-    environment = var.environment
-  }
-}
-
 #This code block uses an explicit dependency by using the ".name" at the end of the rsg name line
 #This tells AzureRM that this VNET is dependent on the resource group reference name "rg"
 #Having an explicit dependency prevents the resource group this VNET is tied to, from being deleted
