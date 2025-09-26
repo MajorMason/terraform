@@ -33,9 +33,16 @@ module "virtual_machine" {
   storage_account_type  = var.storage_account_type
 }
 
- #Keyvault
- module "keyvault" {
-  source = "./modules/keyvault"
-  keyvault_name = var.keyvault_name
+#Keyvault
+module "keyvault" {
+  source            = "./modules/keyvault"
+  keyvault_name     = var.keyvault_name
   keyvault_sku_name = var.keyvault_sku_name
- }
+}
+
+#Storage Account
+module "storage_account" {
+  source           = "./modules/storage_account"
+  account_tier     = var.account_tier
+  replication_type = var.replication_type
+}

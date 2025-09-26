@@ -76,3 +76,12 @@ variable "nic_ids" {
 variable "admin_username" {
   type = string
 }
+
+#Storage Account
+variable "account_tier" {
+  type = string
+}
+
+variable "replication_type" {
+  type = string
+}
