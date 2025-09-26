@@ -27,3 +27,8 @@ variable "subnet_name" {
 variable "address_prefix" {
   type = list(string)
 }
+
+#Public IP
+variable "allocation_method" {
+  type = string
+}

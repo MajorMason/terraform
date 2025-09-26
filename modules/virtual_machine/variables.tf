@@ -10,18 +10,17 @@ variable "environment" {
   type        = string
 }
 
-#Subnet
-variable "subnet_name" {
+#Virtual Machine
+variable "vm_name" {
   type = string
 }
 
-variable "address_prefix" {
-  type = list(string)
-}
-
-#Virtual Machine
 variable "vm_size" {
   description = "Virtual Machine size"
+  type = string
+}
+
+variable "admin_username" {
   type = string
 }
 
@@ -38,6 +37,14 @@ variable "max_bid_price" {
 variable "storage_account_type" {
   description = "Storage account SKU to be lowest tier"
   type        = string
+}
+
+variable "custom_data" {
+  type = string
+}
+
+variable "network_interface_ids" {
+  type = string(list)
 }
 
 variable "nic_ids" {

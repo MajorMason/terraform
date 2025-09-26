@@ -1,5 +1,9 @@
 #While the "type" line isn't required, its recommended to have so that others know what type
 #of string the variable is
+variable "name" {
+  type = string
+}
+
 variable "location" {
   description = "The Azure region to deploy to"
   type        = string
