@@ -6,3 +6,4 @@ that the following is configured on the Azure side first:
 
 For the storage account configuration itself, we need to make sure that its a blob storage
 by setting the value of "account_tier" to "Standard" and the "account_kind" to "BlobStorage".
+This combination of properties will ensure the lowest price for our needs.

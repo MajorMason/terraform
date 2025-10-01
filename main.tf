@@ -43,6 +43,7 @@ module "keyvault" {
 #Storage Account
 module "storage_account" {
   source           = "./modules/storage_account"
+  account_kind     = var.account_kind
   account_tier     = var.account_tier
   replication_type = var.replication_type
 }

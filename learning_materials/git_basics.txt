@@ -18,7 +18,7 @@ git push --set-upstream terraform main -f
 And you're done! You should be ready for "git pushes" now to your github repository.
 
 Tip: If you tried installing posh-git but then tried uninstalling the module and receieve
-and error message each POSH startup, just look up your variable $PROFILE and track down the
+an error message each POSH startup, just look up your variable $PROFILE and track down the
 file it lists, then remove the "import git-module" from your profile file.
 
 NOTE: If gitignore is failing to ignore large files such as the included terraform provider file or
