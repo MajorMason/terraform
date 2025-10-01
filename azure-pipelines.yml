@@ -1,0 +1,43 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  terraformVersion: '1.6.0'
+  azureServiceConnection: 'Your-Service-Connection-Name'
+  azureSubscriptionId: 'Your-Subscription-ID'
+  azureResourceGroup: 'Your-Resource-Group'
+  azureLocation: 'eastus'
+
+steps:
+  - task: UseTerraform@0
+    inputs:
+      terraformVersion: $(terraformVersion)
+
+  - script: |
+      terraform init -backend-config="resource_group_name=$(azureResourceGroup)" \
+                     -backend-config="storage_account_name=tfstate$(Build.BuildId)" \
+                     -backend-config="container_name=tfstate" \
+                     -backend-config="key=terraform.tfstate"
+    displayName: 'Terraform Init'
+
+  - script: terraform validate
+    displayName: 'Terraform Validate'
+
+  - script: terraform plan -out=tfplan
+    displayName: 'Terraform Plan'
+
+  - script: terraform apply -auto-approve tfplan
+    displayName: 'Terraform Apply'
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: $(azureServiceConnection)
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        echo "Deployment complete in $(azureLocation)"
