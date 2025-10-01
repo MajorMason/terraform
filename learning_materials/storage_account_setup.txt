@@ -1,0 +1,8 @@
+For our storage account that will hold our Terraform state file(s), we need to make sure
+that the following is configured on the Azure side first:
+
+1. Assign the "Storage Blob Data Contributor" role on the storage account container.
+2. Assign/set "Reader" on the storage account itself (only required if Lookup_blob_endpoint is true)
+
+For the storage account configuration itself, we need to make sure that its a blob storage
+by setting the value of "account_tier" to "Standard" and the "account_kind" to "BlobStorage".

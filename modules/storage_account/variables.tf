@@ -10,6 +10,10 @@ variable "environment" {
   type        = string
 }
 
+variable "account_kind" {
+  type = string
+}
+
 variable "account_tier" {
     type = string
 }
