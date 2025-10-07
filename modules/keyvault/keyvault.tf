@@ -27,6 +27,10 @@ resource "azurerm_key_vault" "keyvault" {
       "Get",
     ]
   }
+
+  tags = {
+    environment = var.environment
+  }
 }
 #NOTE: Once purge protection is enabled, its impossible to disable it, deleting the keyvault
 #with purge protection enabled will schedule it for standard deletion in 90 days
