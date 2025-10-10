@@ -1,38 +1,18 @@
 trigger:
   branches:
     include:
-      - main
+      - main  # Adjust to your default branch
 
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  terraformVersion: '1.6.0'
-  azureServiceConnection: 'Your-Service-Connection-Name'
-  azureSubscriptionId: 'Your-Subscription-ID'
-  azureResourceGroup: 'Your-Resource-Group'
-  azureLocation: 'eastus'
+  terraformVersion: '3.0.0'  # Set your desired version
+  azureServiceConnection: 'Terraform-ADO-BuildDeploy'  # Name of your Azure service connection
+  tfWorkingDirectory: './terraform'  # Path to your Terraform code
 
 steps:
-  - task: UseTerraform@0
-    inputs:
-      terraformVersion: $(terraformVersion)
-
-  - script: |
-      terraform init -backend-config="resource_group_name=$(azureResourceGroup)" \
-                     -backend-config="storage_account_name=tfstate$(Build.BuildId)" \
-                     -backend-config="container_name=tfstate" \
-                     -backend-config="key=terraform.tfstate"
-    displayName: 'Terraform Init'
-
-  - script: terraform validate
-    displayName: 'Terraform Validate'
-
-  - script: terraform plan -out=tfplan
-    displayName: 'Terraform Plan'
-
-  - script: terraform apply -auto-approve tfplan
-    displayName: 'Terraform Apply'
+  - checkout: self
 
   - task: AzureCLI@2
     inputs:
@@ -40,4 +20,20 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        echo "Deployment complete in $(azureLocation)"
+        echo "Installing Terraform..."
+        wget https://releases.hashicorp.com/terraform/${terraformVersion}/terraform_${terraformVersion}_linux_amd64.zip
+        unzip terraform_${terraformVersion}_linux_amd64.zip
+        sudo mv terraform /usr/local/bin/
+        terraform -version
+
+  - script: terraform init
+    workingDirectory: $(tfWorkingDirectory)
+    displayName: 'Terraform Init'
+
+  - script: terraform plan -out=tfplan
+    workingDirectory: $(tfWorkingDirectory)
+    displayName: 'Terraform Plan'
+
+  - script: terraform apply -auto-approve tfplan
+    workingDirectory: $(tfWorkingDirectory)
+    displayName: 'Terraform Apply'
