@@ -31,3 +31,14 @@ keyvault_sku_name = "standard"
 account_kind = "BlobStorage"
 account_tier = "Standard"
 replication_type = "LRS"
+
+#SQL Server & DBs
+sql_version = "12.0"
+sql_login = "admin"
+sql_pass = "@dm1n1$tr@tor"
+entraid_login = "EntraID Admin"
+object_id = "00000000"
+license_type = "LicenseIncluded"
+max_size_gb = 2
+sku_name = "Basic"
+zone_redundant = false

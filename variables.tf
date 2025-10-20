@@ -90,7 +90,7 @@ variable "replication_type" {
   type = string
 }
 
-#SQL Server
+#SQL Server & DBs
 variable "sql_version" {
   type = string
 }
@@ -109,4 +109,20 @@ variable "entraid_login" {
 
 variable "object_id" {
   type = string
+}
+
+variable "license_type" {
+  type = string
+}
+
+variable "max_size_gb" {
+  type = number
+}
+
+variable "sku_name" {
+  type = string
+}
+
+variable "zone_redundant" {
+  type = bool
 }

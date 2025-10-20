@@ -47,3 +47,17 @@ module "storage_account" {
   account_tier     = var.account_tier
   replication_type = var.replication_type
 }
+
+#SQL Server & DBs
+module "sql_server" {
+  source         = "./modules/sql_server"
+  sql_version    = "12.0"
+  sql_login      = "admin"
+  sql_pass       = "@dm1n1$tr@tor557322"
+  entraid_login  = "EntraID Admin"
+  object_id      = "00000000"
+  license_type   = "LicenseIncluded"
+  max_size_gb    = 10
+  sku_name       = "S0"
+  zone_redundant = true
+}
