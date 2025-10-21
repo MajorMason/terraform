@@ -40,5 +40,14 @@ entraid_login = "EntraID Admin"
 object_id = "00000000"
 license_type = "LicenseIncluded"
 max_size_gb = 10
-sku_name = "S0"
+sql_sku_name = "S0"
 zone_redundant = true
+
+#Service Plan & App Services
+serviceplan_sku = "P1v3"
+os_type = "Windows"
+always_on = false
+always_on_api = true
+load_balancing = "WeightedRoundRobin"
+current_stack = "dotnetcore"
+dotnet_version = "v7.0"

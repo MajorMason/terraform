@@ -4,7 +4,7 @@ resource "azurerm_mssql_database" "database" {
   collation = "SQL_Latin1_General_CP1_CI_AS"
   license_type = var.license_type
   max_size_gb = var.max_size_gb
-  sku_name = var.sku_name
+  sku_name = var.sql_sku_name
   zone_redundant = var.zone_redundant
 
   lifecycle {
@@ -22,7 +22,7 @@ resource "azurerm_mssql_database" "repo-database" {
   collation = "SQL_Latin1_General_CP1_CI_AS"
   license_type = var.license_type
   max_size_gb = var.max_size_gb
-  sku_name = var.sku_name
+  sku_name = var.sql_sku_name
   zone_redundant = var.zone_redundant
 
   lifecycle {

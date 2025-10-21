@@ -10,38 +10,35 @@ variable "environment" {
   type        = string
 }
 
-variable "sql_version" {
+#Service Plan & App Services
+variable "serviceplan_sku" {
+    type = string
+}
+
+variable "os_type" {
   type = string
 }
 
-variable "sql_login" {
-  type = string
-}
-
-variable "sql_pass" {
-  type = string
-}
-
-variable "entraid_login" {
-  type = string
-}
-
-variable "object_id" {
-  type = string
-}
-
-variable "license_type" {
-  type = string
-}
-
-variable "max_size_gb" {
-  type = number
-}
-
-variable "sql_sku_name" {
-  type = string
-}
-
-variable "zone_redundant" {
+variable "always_on" {
   type = bool
+}
+
+variable "always_on_api" {
+  type = bool
+}
+
+variable "load_balancing" {
+  type = string
+}
+
+variable "bit_worker" {
+  type = string
+}
+
+variable "current_stack" {
+  type = string
+}
+
+variable "dotnet_version" {
+  type = string
 }

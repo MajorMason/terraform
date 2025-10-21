@@ -51,13 +51,26 @@ module "storage_account" {
 #SQL Server & DBs
 module "sql_server" {
   source         = "./modules/sql_server"
-  sql_version    = "12.0"
-  sql_login      = "admin"
-  sql_pass       = "@dm1n1$tr@tor557322"
-  entraid_login  = "EntraID Admin"
-  object_id      = "00000000"
-  license_type   = "LicenseIncluded"
-  max_size_gb    = 10
-  sku_name       = "S0"
-  zone_redundant = true
+  sql_version    = var.sql_version
+  sql_login      = var.sql_login
+  sql_pass       = var.sql_pass
+  entraid_login  = var.entraid_login
+  object_id      = var.object_id
+  license_type   = var.license_type
+  max_size_gb    = var.max_size_gb
+  sql_sku_name   = var.sql_sku_name
+  zone_redundant = var.zone_redundant
+}
+
+#Service Plan & App Service
+module "app_services" {
+  source          = "./modules/app_services"
+  serviceplan_sku = var.serviceplan_sku
+  os_type         = var.os_type
+  always_on       = var.always_on
+  always_on_api   = var.always_on_api
+  load_balancing  = var.load_balancing
+  bit_worker      = var.bit_worker
+  current_stack   = var.current_stack
+  dotnet_version  = var.dotnet_version
 }

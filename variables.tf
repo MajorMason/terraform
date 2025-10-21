@@ -119,10 +119,43 @@ variable "max_size_gb" {
   type = number
 }
 
-variable "sku_name" {
+variable "sql_sku_name" {
   type = string
 }
 
 variable "zone_redundant" {
   type = bool
+}
+
+#Service Plan & App Services
+variable "serviceplan_sku" {
+  type = string
+}
+
+variable "os_type" {
+  type = string
+}
+
+variable "always_on" {
+  type = bool
+}
+
+variable "always_on_api" {
+  type = bool
+}
+
+variable "load_balancing" {
+  type = string
+}
+
+variable "bit_worker" {
+  type = string
+}
+
+variable "current_stack" {
+  type = string
+}
+
+variable "dotnet_version" {
+  type = string
 }
