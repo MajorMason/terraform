@@ -28,4 +28,11 @@ resource "azurerm_windows_web_app" "be-webapp" {
     load_balancing_mode = var.load_balancing
     use_32_bit_worker = var.bit_worker
   }
+
+#The "value" string is the connection string itself
+  connection_string {
+    name = var.connection_string_name
+    type = var.connection_string_type
+    value = var.connection_string_value
+  }
 }

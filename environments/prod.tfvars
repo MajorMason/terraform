@@ -51,3 +51,6 @@ always_on_api = true
 load_balancing = "WeightedRoundRobin"
 current_stack = "dotnetcore"
 dotnet_version = "v7.0"
+connection_string_name = "ProthonotaryConnectionString"
+connection_string_type = "SQLAzure"
+connection_string_value = "Server=tcp:${azurerm_mssql_managed_instance.prod-sql.name}.database.windows.net,1433;Persist Security Info=False;User ID=county;Password=Suit35533;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=100;"

@@ -64,13 +64,16 @@ module "sql_server" {
 
 #Service Plan & App Service
 module "app_services" {
-  source          = "./modules/app_services"
-  serviceplan_sku = var.serviceplan_sku
-  os_type         = var.os_type
-  always_on       = var.always_on
-  always_on_api   = var.always_on_api
-  load_balancing  = var.load_balancing
-  bit_worker      = var.bit_worker
-  current_stack   = var.current_stack
-  dotnet_version  = var.dotnet_version
+  source                  = "./modules/app_services"
+  serviceplan_sku         = var.serviceplan_sku
+  os_type                 = var.os_type
+  always_on               = var.always_on
+  always_on_api           = var.always_on_api
+  load_balancing          = var.load_balancing
+  bit_worker              = var.bit_worker
+  current_stack           = var.current_stack
+  dotnet_version          = var.dotnet_version
+  connection_string_name  = var.connection_string_name
+  connection_string_type  = var.connection_string_type
+  connection_string_value = var.connection_string_value
 }

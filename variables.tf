@@ -159,3 +159,15 @@ variable "current_stack" {
 variable "dotnet_version" {
   type = string
 }
+
+variable "connection_string_name" {
+  type = string
+}
+
+variable "connection_string_type" {
+  type = string
+}
+
+variable "connection_string_value" {
+  type = string
+}
