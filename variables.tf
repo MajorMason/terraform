@@ -127,47 +127,27 @@ variable "zone_redundant" {
   type = bool
 }
 
-#Service Plan & App Services
-variable "serviceplan_sku" {
+#Container App & Environment
+variable "revision_mode" {
   type = string
 }
 
-variable "os_type" {
+variable "container_name_fe" {
   type = string
 }
 
-variable "always_on" {
-  type = bool
-}
-
-variable "always_on_api" {
-  type = bool
-}
-
-variable "load_balancing" {
+variable "container_name_be" {
   type = string
 }
 
-variable "bit_worker" {
+variable "container_image_url" {
   type = string
 }
 
-variable "current_stack" {
-  type = string
+variable "container_cpu" {
+  type = number
 }
 
-variable "dotnet_version" {
-  type = string
-}
-
-variable "connection_string_name" {
-  type = string
-}
-
-variable "connection_string_type" {
-  type = string
-}
-
-variable "connection_string_value" {
+variable "container_memory" {
   type = string
 }

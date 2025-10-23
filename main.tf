@@ -62,18 +62,13 @@ module "sql_server" {
   zone_redundant = var.zone_redundant
 }
 
-#Service Plan & App Service
-module "app_services" {
-  source                  = "./modules/app_services"
-  serviceplan_sku         = var.serviceplan_sku
-  os_type                 = var.os_type
-  always_on               = var.always_on
-  always_on_api           = var.always_on_api
-  load_balancing          = var.load_balancing
-  bit_worker              = var.bit_worker
-  current_stack           = var.current_stack
-  dotnet_version          = var.dotnet_version
-  connection_string_name  = var.connection_string_name
-  connection_string_type  = var.connection_string_type
-  connection_string_value = var.connection_string_value
+#Container App & Environment
+module "container_apps" {
+  source              = "./modules/app_services"
+  revision_mode       = var.revision_mode
+  container_name_fe   = var.container_name_fe
+  container_name_be   = var.container_name_be
+  container_image_url = var.container_image_url
+  container_cpu       = var.container_cpu
+  container_memory    = var.container_memory
 }

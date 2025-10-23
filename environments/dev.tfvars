@@ -43,14 +43,10 @@ max_size_gb = 2
 sql_sku_name = "Basic"
 zone_redundant = false
 
-#Service Plan & App Services
-serviceplan_sku = "B1"
-os_type = "Windows"
-always_on = false
-always_on_api = true
-load_balancing = "WeightedRoundRobin"
-current_stack = "dotnetcore"
-dotnet_version = "v8.0"
-connection_string_name = "ProthonotaryConnectionString"
-connection_string_type = "SQLAzure"
-connection_string_value = "Server=tcp:${azurerm_mssql_managed_instance.dev-sql.name}.database.windows.net,1433;Persist Security Info=False;User ID=county;Password=Suit35533;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=100;"
+#Container App & Environment
+revision_mode = "Single"
+container_name_fe = "${var.environment}-FE"
+container_name_be = "${var.environment}-BE"
+container_image = "docker.nginx.com/mysite:latest"
+container_cpu = 0.5
+container_memory = "1.0Gi"
