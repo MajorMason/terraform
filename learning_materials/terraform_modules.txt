@@ -1,0 +1,38 @@
+What is a Terraform Module?
+A Terraform module is a set of Terraform configuration files in a single directory.
+Even a simple configuration consisting of a single directory with one or more .tf files is a module.
+So in this sense, every Terraform configuration is part of a module. You may have a simple set of
+Terraform configuration files such as:
+
+Terraform (project folder)
+|-modules\virtual_machine (folder\subfolder)
+|---variables.tf
+|---virtual_machine.nic.tf
+|---virtual_machine.tf
+|-main.tf
+|-variables.tf
+
+Notice how we are treating the single directory of "modules\virtual_machine" as one module.
+Within that directory of "modules\virtual_machine" we are calling all files within the
+"virtual_machine" module folder: virtual_machine.tf, virtual_machine_nic.tf, and variables.tf.
+
+Below is a simplified example of our virtual machine module in our root main.tf file:
+module "virtual_machine" {
+  source                = "./modules/virtual_machine"
+  vm_name               = "${var.environment}-vm"
+  location              = var.location
+  vm_size               = var.vm_size
+}
+
+Think of each module codeblock as the actual resource, with us only needing to include the strings
+that call our variables we specified in our tfvars files (for dev and prod).
+
+Remember, any variable you specify within the nestled variables.tf file for each module, must
+have the same variables pasted into the global variables.tf file, so that the root main.tf
+file can see/reference the variables in the root.
+
+NOTE: If we were to bundle all of our resource codeblocks under a single nestled main.tf file
+in modules\ directory and have one nestled variables.tf file for said monolithic module, then
+we wouldn't be able to write out individual module codeblocks without needing to reference every
+variable that we declared within the nestled variables.tf file in the module, for every module
+codeblock in our root main.tf file.
