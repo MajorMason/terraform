@@ -3,7 +3,6 @@
 variable "name" {
   description = "The name of the resource group, required in our root main.tf file"
   type = string
-  default = "${var.environment}-rg"
 }
 
 variable "location" {

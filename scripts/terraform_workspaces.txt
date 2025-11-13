@@ -1,0 +1,13 @@
+Here are a list of commands that we can use in order to switch bewteen workspaces.
+Workspaces are important, because each workspace has a state file associated with it.
+We will have one workspace for dev, and another for prod, that way we can still use the same
+VSCode project/repository to rule multiple subscriptions.
+
+NOTE: In order to run a terraform workspace command, you need to run a terraform init first.
+In our case, due to budget constraints and not having an Azure subscription, we'll simulate
+as if we did use them.
+
+terraform workspace new dev
+terraform workspace new prod
+terraform workspace select dev
+terraform apply

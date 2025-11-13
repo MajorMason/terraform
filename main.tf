@@ -65,7 +65,10 @@ module "sql_server" {
 
 #Container App & Environment
 module "container_apps" {
-  source              = "./modules/app_services"
+  source              = "./modules/container_apps"
+  conapp_fe_fqdn      = var.conapp_fe_fqdn
+  conapp_fe_port      = var.conapp_fe_port
+  conapp_fe_traffic   = var.conapp_fe_traffic
   revision_mode       = var.revision_mode
   container_name_fe   = var.container_name_fe
   container_name_be   = var.container_name_be
