@@ -1,3 +1,4 @@
+
 For our storage account that will hold our Terraform state file(s), we need to make sure
 that the following is configured on the Azure side first:
 
@@ -7,3 +8,21 @@ that the following is configured on the Azure side first:
 For the storage account configuration itself, we need to make sure that its a blob storage
 by setting the value of "account_tier" to "Standard" and the "account_kind" to "BlobStorage".
 This combination of properties will ensure the lowest price for our needs.
+
+TFvars vs State (How to store both?)-----------
+The state files will live in a storage account under their own container called "tfstate", while
+our tfvars files will live under the same storage account but under their own container that's
+called "tfvars".
+
+Terraform doesn’t have a mechanism to “store” or “fetch” tfvars files from Azure automatically.
+We can put them in Blob Storage, but we'll need to handle retrieval ourselves
+(via scripts, CI/CD pipelines, or manual download).
+
+After much review and thought, we're opting in for the semi-auto approach where we run
+the following Azure CLI based commands to upload our tfvars files to our tfvars storage container:
+
+az storage blob upload \
+  --account-name terraform-storage \
+  --container-name tfvars \
+  --name dev.tfvars \
+  --file ./dev.tfvars
