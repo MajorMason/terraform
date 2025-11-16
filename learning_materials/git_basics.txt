@@ -1,22 +1,28 @@
+First Time Authentication Setup via SSH Key------
+NOTE: Before starting, make sure to switch your VSCode terminal to Bash.
+-In your VSCode terminal, type in "ssh-keygen" and press enter (type "y" to accept).
+-Issue the command "cd home/(username)/.ssh/" then cat the .pub file you generated.
+-Take the full line output from the cat over to your GitHub profile settings page.
+-On your profile settings page on the lefthand sidebar, find "SSH and GPG keys"
+and enter that subpage, where you can paste in the new key.
+
+Configuring & Using Git--------------------------
 Start by installing git from the official git website (don't try to use the posh module).
-Once git is installed, restart VSCode.
+Once git is installed, restart VSCode. Then issue the following commands in order:
 
-Once VSCode is up, run "git init -b main" to initialize your directory you're working in.
-Then, use "git add ." to track files between VSCode and the github repository.
-
-Finally, use "git commit -m "commit message as desired".
-Note: If you receive an error "Author identity unknown" then modify the gitconfig file located
-in the directory you installed Git in (default is ProgramFiles\Git) and in that gitconfig file,
-make sure to add the following lines at the bottom (with indentations):
-[user]
-    name = (your exact name as listed on github)
-    email = (email associated with your github login)
-
-Now we get to push our code to the repository using this command:
-git push --set-upstream terraform main -f
+1. "git init -b main" to initialize your directory you're working in.
+2. "git add ." to track files between VSCode and the github repository.
+3. "git commit -m "commit message as desired"
+4. "git branch -M main"
+5. "git remote add origin git@github.com:(GitHub_Username)/(repository_name).git"
+NOTE: Despite GitHub still offering the option to leverage HTTPS UN/PWD based auth,
+you ultimately need to use SSH in the long run for better security/simplicity.
+6. "git push -u origin main" which pushes our changes to our repository.
+NOTE: All subsequent pushes can be done just via "git push".
 
 And you're done! You should be ready for "git pushes" now to your github repository.
 
+Troubleshooting----------------------------------
 Tip: If you tried installing posh-git but then tried uninstalling the module and receieve
 an error message each POSH startup, just look up your variable $PROFILE and track down the
 file it lists, then remove the "import git-module" from your profile file.
@@ -26,6 +32,14 @@ another executable, you'll need to delete the "git" folder from the project usin
 (making sure to reveal hidden items) then run a "git init" to reinitialize the directory.
 
 NOTE: If you receive the error "'terraform does not appear to be a git repository, could not read
-from remote repository", then you'll need to issue the following commands:
+from remote repository", and you are leveraging HTTPS based UN/PWD auth, then you'll need to issue
+the following commands:
 git remote add terraform https://github.com/MajorMason/terraform.git
 git push --set-upstream terraform main
+
+NOTE: If you receive an error "Author identity unknown" then modify the gitconfig file located
+in the directory you installed Git in (default is ProgramFiles\Git\etc) and in that gitconfig file,
+make sure to add the following lines at the bottom (with indentations):
+[user]
+    name = (your exact name as listed on github)
+    email = (email associated with your github login)
