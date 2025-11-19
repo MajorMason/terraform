@@ -11,3 +11,15 @@ data "azurerm_key_vault_secret" "dev-pass" {
   name         = "dev-pass"
   key_vault_id = var.keyvault_name
 }
+
+#Data sources for Private Endpoint configuration for our Azure SQL Server
+data "azurerm_virtual_network" "vnet" {
+  name                = "${var.environment}-vnet"
+  resource_group_name = data.azurerm_resource_group.vnet.name
+}
+
+data "azurerm_subnet" "subnet" {
+  name                 = "${var.environment}-subnet"
+  virtual_network_name = data.azurerm_virtual_network.vnet.name
+  resource_group_name  = data.azurerm_resource_group.rg.name
+}
