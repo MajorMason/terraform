@@ -1,16 +1,16 @@
-#This file allows us to store our Terraform state file in a secure location, namely
+#This file allows us to store our Terraform state files in a secure location, namely
 #an Azure storage account, as denoted below
-#NOTE: Required information includes storage account name, container name, and key
+#Our ADO build pipeline will leverage this entirely, and pass in specific settings
+#as if we ran it from our VSCode via "terraform init" which is pretty cool
 terraform {
-  backend "azurerm" {
-    tenant_id            = "000000"
-    client_id            = "000000"
-    use_oidc             = true
-    use_azuread_auth     = true
-    storage_account_name = "terraform-storage"
-    container_name       = "tfstate"
-    key                  = "dev.tfstate"
-  }
+  backend "azurerm" {}
 }
-#The "client_id" is the client ID value of the SP, App Reg, or MI set aside for Terraform to use
-#The "key" is just the name of the blob file that we'll write the TF state info into
+
+# Dev environment preview (what's done at the pipeline)
+#NOTE: Required information includes storage account name, container name, and key
+
+#terraform init \
+#  -backend-config="resource_group_name=rg-dev" \
+#  -backend-config="storage_account_name=devstorage" \
+#  -backend-config="container_name=tfstate" \
+#  -backend-config="key=dev.tfstate"
