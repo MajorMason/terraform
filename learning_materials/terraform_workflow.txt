@@ -1,0 +1,8 @@
+Infrastructure Recap for Terraform CI/CD:
+-Our ADO build pipeline accesses our Azure Storage Account/Container/Blobs to pull in our tfstate files and tfvars blob files.
+-Our ADO build pipeline will leverage our backend.tf file and upload the tfstate files as if we did a "terraform init / plan / apply" right from our VSCode terminal.
+-We STILL need to use a backend codeblock in our backend.tf file for uploading our tfstate files to our AZ Storage Account.
+-We can keep our git-based workflow in VSCode, that does not change.
+
+The Gotcha:
+-However, we will manually need to upload our TFVars files to our AZ Storage Account as there is no automated way to do this.
