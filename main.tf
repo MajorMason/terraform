@@ -7,7 +7,7 @@ module "resource_group" {
 }
 
 #Network module
-#Contains: Vnet, Subnet, Public IP
+#Contains: Vnet, Subnet, Public IP, DNS Zones
 module "virtual_network" {
   source            = "./modules/network"
   location          = var.location
