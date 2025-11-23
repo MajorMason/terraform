@@ -35,4 +35,5 @@ NOTE: If we were to bundle all of our resource codeblocks under a single nestled
 in modules\ directory and have one nestled variables.tf file for said monolithic module, then
 we wouldn't be able to write out individual module codeblocks without needing to reference every
 variable that we declared within the nestled variables.tf file in the module, for every module
-codeblock in our root main.tf file.
+codeblock in our root main.tf file. It would also be difficult to see where one set of variables
+for a resource (or group of related resources) ends and another begins.

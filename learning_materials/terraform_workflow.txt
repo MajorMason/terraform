@@ -1,4 +1,4 @@
-Infrastructure Recap for Terraform CI/CD:
+Infrastructure Recap for Terraform CI/CD-----------
 -Our ADO build pipeline accesses our Azure Storage Account/Container/Blobs to pull in our tfstate files and tfvars blob files.
 -Our ADO build pipeline will leverage our backend.tf file and upload the tfstate files as if we did a "terraform init / plan / apply" right from our VSCode terminal.
 -We STILL need to use a backend codeblock in our backend.tf file for uploading our tfstate files to our AZ Storage Account.
@@ -6,3 +6,18 @@ Infrastructure Recap for Terraform CI/CD:
 
 The Gotcha:
 -However, we will manually need to upload our TFVars files to our AZ Storage Account as there is no automated way to do this.
+
+Legacy Terraform workflow using Workspaces--------
+Here are a list of commands that we can use in order to switch bewteen workspaces.
+Workspaces are important, because each workspace has a state file associated with it.
+We will have one workspace for dev, and another for prod, that way we can still use the same
+VSCode project/repository to rule multiple subscriptions.
+
+NOTE: In order to run a terraform workspace command, you need to run a terraform init first.
+In our case, due to budget constraints and not having an Azure subscription, we'll simulate
+as if we did use them.
+
+terraform workspace new dev
+terraform workspace new prod
+terraform workspace select dev
+terraform apply

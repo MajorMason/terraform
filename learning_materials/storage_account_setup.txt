@@ -1,5 +1,5 @@
-
-For our storage account that will hold our Terraform state file(s), we need to make sure
+RBAC Security setup for Storage Account-------
+For our storage account that will hold our tfstate and tfvars file(s), we need to make sure
 that the following is configured on the Azure side first:
 
 1. Assign the "Storage Blob Data Contributor" role on the storage account container.
@@ -9,15 +9,29 @@ For the storage account configuration itself, we need to make sure that its a bl
 by setting the value of "account_tier" to "Standard" and the "account_kind" to "BlobStorage".
 This combination of properties will ensure the lowest price for our needs.
 
-TFvars vs State (How to store both?)-----------
+Storage Account architecture-------------------
 The state files will live in a storage account under their own container called "tfstate", while
 our tfvars files will live under the same storage account but under their own container that's
-called "tfvars".
+called "tfvars". Both file types will be blob files.
 
-Terraform doesn’t have a mechanism to “store” or “fetch” tfvars files from Azure automatically.
+Blob file handling method----------------------
+Terraform doesn’t have a mechanism to “store” nor “fetch” tfvars files from Azure automatically.
 We can put them in Blob Storage, but we'll need to handle retrieval ourselves
 (via scripts, CI/CD pipelines, or manual download).
 
+In our use case, our ADO build pipline is written to perform the following operations against our
+Storage Account:
+-TFState files: Upload & Fetch (upload is possible because of our backend.tf file)
+-TFVars files: Fetch only (upload is only possible via az storage cmds from VSCode)
+Again, this goes back to the principle of "where" we are issuing the "terraform init / apply" cmds.
+Instead of manually doing that from VSCode, we can enable full CI/CD of DevOps itself and keep
+our git-workflow which supports the use of a repository for our Terraform code.
+
+NOTE: "terraform init" and "terraform apply" cmds are the ones that auto-leverage the backend.tf
+file which is how our ADO Build Pipeline can do all the uploading of the tfstate files. It also
+circumvents having to deal with "terraform workspace" commands (discussed in separate notes file.)
+
+TFVars Upload approach-------------------------
 After much review and thought, we're opting in for the semi-auto approach where we run
 the following Azure CLI based commands to upload our tfvars files to our tfvars storage container:
 
