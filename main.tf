@@ -76,3 +76,9 @@ module "container_apps" {
   container_cpu       = var.container_cpu
   container_memory    = var.container_memory
 }
+
+#Monitoring
+module "log_analytics_workspace" {
+  source    = "./modules/monitoring"
+  retention = var.retention
+}

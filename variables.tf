@@ -169,3 +169,8 @@ variable "conapp_fe_port" {
 variable "conapp_fe_traffic" {
   type = number
 }
+
+#Monitoring
+variable "retention" {
+  type = number
+}
