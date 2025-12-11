@@ -22,7 +22,7 @@ variable "container_name_be" {
   type = string
 }
 
-variable "container_image_url" {
+variable "container_image" {
   type = string
 }
 

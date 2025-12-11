@@ -1,3 +1,4 @@
+#The autoscaling functionality is provided by KEDA (Kubernetes Event-Driven Autoscaling)
 resource "azurerm_container_app" "conapp-fe" {
   name = "${var.environment}-FE"
   container_app_environment_id = azurerm_container_app_environment.conapp-environment.id
@@ -7,10 +8,25 @@ resource "azurerm_container_app" "conapp-fe" {
     template {
       container {
         name = var.container_name_fe
-        image = var.container_image_url
+        image = var.container_image
         cpu = var.container_cpu
         memory = var.container_memory
       }
+      scale {
+        min_replicas = 1
+        max_replicas = 5
+
+      rule {
+        name = "cpu-scaling"
+        custom {
+          type = "cpu"
+          metadata = {
+            threshold = "70"
+          }
+        }
+      }
+    }
+      
     }
 
     ingress {
@@ -32,7 +48,7 @@ resource "azurerm_container_app" "conapp-be" {
     template {
       container {
         name = var.container_name_be
-        image = var.container_image_url
+        image = var.container_image
         cpu = var.container_cpu
         memory = var.container_memory
       }

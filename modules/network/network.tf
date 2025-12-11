@@ -13,7 +13,7 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 #In most cases, its better to deploy subnets separately from the VNET
-resource "azurerm_subnet" "subnet" {
+resource "azurerm_subnet" "private-subnet" {
   name                 = "${var.environment}-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name

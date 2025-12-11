@@ -3,7 +3,7 @@ resource "azurerm_private_endpoint" "pe_azuresql" {
   name                = "${var.environment}-pe-azuresql"
   location            = var.location
   resource_group_name = "${var.environment}-rg"
-  subnet_id           = azurerm_subnet.subnet.id
+  subnet_id           = azurerm_subnet.private-subnet.id
 
 #The private connection resource ID string is used instead of "alias" since we're
 #targeting our own SQL Server in the same subscription (even with our multi-subscription setup)

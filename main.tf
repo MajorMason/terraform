@@ -11,26 +11,12 @@ module "resource_group" {
 module "virtual_network" {
   source            = "./modules/network"
   location          = var.location
-  vnet_name         = "${var.environment}-vnet"
+  vnet_name         = var.vnet_name
   address_space     = var.address_space
   environment       = var.environment
-  subnet_name       = "${var.environment}-subnet"
+  subnet_name       = var.subnet_name
   address_prefix    = var.address_prefix
   allocation_method = Static
-}
-
-#Virtual Machine module
-module "virtual_machine" {
-  source                = "./modules/virtual_machine"
-  vm_name               = "${var.environment}-vm"
-  location              = var.location
-  vm_size               = var.vm_size
-  admin_username        = "adminuser"
-  network_interface_ids = var.nic_ids[var.environment]
-  eviction_policy       = var.eviction_policy
-  max_bid_price         = var.max_bid_price
-  custom_data           = filebase64("linux_template.tpl")
-  storage_account_type  = var.storage_account_type
 }
 
 #Keyvault
@@ -65,16 +51,16 @@ module "sql_server" {
 
 #Container App & Environment
 module "container_apps" {
-  source              = "./modules/container_apps"
-  conapp_fe_fqdn      = var.conapp_fe_fqdn
-  conapp_fe_port      = var.conapp_fe_port
-  conapp_fe_traffic   = var.conapp_fe_traffic
-  revision_mode       = var.revision_mode
-  container_name_fe   = var.container_name_fe
-  container_name_be   = var.container_name_be
-  container_image_url = var.container_image_url
-  container_cpu       = var.container_cpu
-  container_memory    = var.container_memory
+  source            = "./modules/container_apps"
+  conapp_fe_fqdn    = var.conapp_fe_fqdn
+  conapp_fe_port    = var.conapp_fe_port
+  conapp_fe_traffic = var.conapp_fe_traffic
+  revision_mode     = var.revision_mode
+  container_name_fe = var.container_name_fe
+  container_name_be = var.container_name_be
+  container_image   = var.container_image
+  container_cpu     = var.container_cpu
+  container_memory  = var.container_memory
 }
 
 #Monitoring
