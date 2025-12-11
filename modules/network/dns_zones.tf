@@ -4,7 +4,7 @@
 #Azure SQL DNS Zone & Link
 resource "azurerm_private_dns_zone" "azuresql_zone" {
   name                = "privatelink.database.windows.net"
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "azuresql_zone_vnet_link" {

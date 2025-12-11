@@ -1,29 +1,32 @@
 #Resource Group module
-module "resource_group" {
-  source      = "./modules/resource_group"
-  name        = "${var.environment}-rg"
-  location    = var.location
-  environment = var.environment
+#NOTE: We need the actual resource group referenced here since we're unable to point to the module
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.environment}-rg"
+  location = var.location
 }
 
 #Network module
 #Contains: Vnet, Subnet, Public IP, DNS Zones
 module "virtual_network" {
-  source            = "./modules/network"
-  location          = var.location
-  vnet_name         = var.vnet_name
-  address_space     = var.address_space
-  environment       = var.environment
-  subnet_name       = var.subnet_name
-  address_prefix    = var.address_prefix
-  allocation_method = Static
+  source              = "./modules/network"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  vnet_name           = var.vnet_name
+  address_space       = var.address_space
+  environment         = var.environment
+  subnet_name         = var.subnet_name
+  address_prefix      = var.address_prefix
+  allocation_method   = "Static"
 }
 
 #Keyvault
 module "keyvault" {
-  source            = "./modules/keyvault"
-  keyvault_name     = var.keyvault_name
-  keyvault_sku_name = var.keyvault_sku_name
+  source              = "./modules/keyvault"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  keyvault_name       = var.keyvault_name
+  keyvault_sku_name   = var.keyvault_sku_name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
 }
 
 #Storage Account

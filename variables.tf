@@ -1,6 +1,11 @@
 #This is where we define global input variables for the entire project
 #While the "type" line isn't required, its recommended to have so that others know what type
 #of string the variable is
+variable "resource_group_name" {
+  type    = string
+  default = "dev"
+}
+
 variable "location" {
   description = "The Azure region to deploy to"
   type        = string

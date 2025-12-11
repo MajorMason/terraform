@@ -2,10 +2,10 @@
 #You can use either an MI or a Service Principal (but an MI is simpler long term)
 resource "azurerm_key_vault" "keyvault" {
   name                        = "${var.environment}-keyvault"
-  resource_group_name         = azurerm_resource_group.rg.name
-  location                    = azurerm_resource_group.rg.location
+  resource_group_name         = var.resource_group_name
+  location                    = var.location
   enabled_for_disk_encryption = true
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  tenant_id                   = var.tenant_id
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
 

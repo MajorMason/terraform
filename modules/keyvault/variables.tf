@@ -1,3 +1,7 @@
+variable "resource_group_name" {
+  type = string
+}
+
 variable "location" {
   description = "The Azure region to deploy to"
   type        = string
@@ -16,5 +20,9 @@ variable "keyvault_name" {
 }
 
 variable "keyvault_sku_name" {
+  type = string
+}
+
+variable "tenant_id" {
   type = string
 }

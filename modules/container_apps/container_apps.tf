@@ -12,21 +12,6 @@ resource "azurerm_container_app" "conapp-fe" {
         cpu = var.container_cpu
         memory = var.container_memory
       }
-      scale {
-        min_replicas = 1
-        max_replicas = 5
-
-      rule {
-        name = "cpu-scaling"
-        custom {
-          type = "cpu"
-          metadata = {
-            threshold = "70"
-          }
-        }
-      }
-    }
-      
     }
 
     ingress {

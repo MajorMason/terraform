@@ -3,8 +3,8 @@
 #Having an explicit dependency prevents the resource group this VNET is tied to, from being deleted
 resource "azurerm_virtual_network" "vnet" {
   name                = "${var.environment}-vnet"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
   address_space       = var.address_space
 
   tags = {
@@ -15,7 +15,7 @@ resource "azurerm_virtual_network" "vnet" {
 #In most cases, its better to deploy subnets separately from the VNET
 resource "azurerm_subnet" "private-subnet" {
   name                 = "${var.environment}-subnet"
-  resource_group_name  = azurerm_resource_group.rg.name
+  resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.address_prefix
 }
@@ -24,8 +24,8 @@ resource "azurerm_subnet" "private-subnet" {
 #since Azure won't assign an IP until after its attached to a resource
 resource "azurerm_public_ip" "public-ip" {
   name                = "${var.environment}-public-ip"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
+  resource_group_name = var.resource_group_name
+  location            = var.location
   allocation_method   = "Static"
 
   tags = {
