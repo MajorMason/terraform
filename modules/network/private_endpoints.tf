@@ -7,12 +7,14 @@ resource "azurerm_private_endpoint" "pe_azuresql" {
 
 #The private connection resource ID string is used instead of "alias" since we're
 #targeting our own SQL Server in the same subscription (even with our multi-subscription setup)
+#Since we're consuming the Azure PaaS privately anyways, we just need Private Endpoints (like below)
+#instead of leveraging a private service link (PLS), which is only needed if other tenants or VNets want to connect to it
 #The manual_connection boolean is set to false since we've not connecting to another tenant
 #nor subscription in our use case
   private_service_connection {
     name                              = "private_endpoint_azuresql"
-    private_connection_resource_id    = azurerm_mssql_server.sql-server.id
     subresource_names                 = ["sqlServer"]
+    private_connection_resource_id = data.azurerm_mssql_server.sql-server.id
     is_manual_connection              = false
     request_message                   = "Connection established for Azure SQL Server."
   }
@@ -30,12 +32,12 @@ resource "azurerm_private_endpoint" "pe_conapp_be" {
   name                = "${var.environment}-pe-conapp-be"
   location            = var.location
   resource_group_name = "${var.environment}-rg"
-  subnet_id           = azurerm_subnet.subnet.id
+  subnet_id           = data.azurerm_subnet.private-subnet.id
 
   private_service_connection {
     name                           = "private_endpoint_conapp_be"
-    private_connection_resource_id = azurerm_storage_account.conapp-be.id
     subresource_names              = ["managedEnvironments"]
+    private_connection_resource_id = data.azurerm_container_app.conapp-be.id
     is_manual_connection           = false
     request_message = "Connection incoming from ContainerApp-BE"
   }

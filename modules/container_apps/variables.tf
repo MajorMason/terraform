@@ -45,3 +45,8 @@ variable "conapp_fe_port" {
 variable "conapp_fe_traffic" {
   type = number
 }
+
+variable "log_analytics_workspace_id" {
+  type        = string
+  description = "ID of the Log Analytics workspace"
+}

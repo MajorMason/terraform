@@ -10,8 +10,8 @@ resource "azurerm_key_vault" "keyvault" {
   purge_protection_enabled    = false
 
   sku_name = var.keyvault_sku_name
-
-  access_policy = {
+#The "current" portion of the data object is just a Terraform label
+  access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
@@ -20,10 +20,6 @@ resource "azurerm_key_vault" "keyvault" {
     ]
 
     secret_permissions = [
-      "Get",
-    ]
-
-    storage_permission = [
       "Get",
     ]
   }

@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "rg" {
 #Contains: Vnet, Subnet, Public IP, DNS Zones
 module "virtual_network" {
   source              = "./modules/network"
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = data.azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   vnet_name           = var.vnet_name
   address_space       = var.address_space
@@ -54,20 +54,22 @@ module "sql_server" {
 
 #Container App & Environment
 module "container_apps" {
-  source            = "./modules/container_apps"
-  conapp_fe_fqdn    = var.conapp_fe_fqdn
-  conapp_fe_port    = var.conapp_fe_port
-  conapp_fe_traffic = var.conapp_fe_traffic
-  revision_mode     = var.revision_mode
-  container_name_fe = var.container_name_fe
-  container_name_be = var.container_name_be
-  container_image   = var.container_image
-  container_cpu     = var.container_cpu
-  container_memory  = var.container_memory
+  source                     = "./modules/container_apps"
+  conapp_fe_fqdn             = var.conapp_fe_fqdn
+  conapp_fe_port             = var.conapp_fe_port
+  conapp_fe_traffic          = var.conapp_fe_traffic
+  revision_mode              = var.revision_mode
+  container_name_fe          = var.container_name_fe
+  container_name_be          = var.container_name_be
+  container_image            = var.container_image
+  container_cpu              = var.container_cpu
+  container_memory           = var.container_memory
+  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace.id
 }
 
 #Monitoring
 module "log_analytics_workspace" {
-  source    = "./modules/monitoring"
-  retention = var.retention
+  source                     = "./modules/monitoring"
+  retention                  = var.retention
+  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace.id
 }
