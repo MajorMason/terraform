@@ -22,10 +22,11 @@ resource "azurerm_container_app" "conapp-fe" {
         }
       }
     }
-
     ingress {
-      fqdn = var.conapp_fe_fqdn
+      external_enabled = true
       target_port = var.conapp_fe_port
+      transport = "auto"
+      fqdn = var.conapp_fe_fqdn
       traffic_weight {
         latest_revision = true
         percentage = var.conapp_fe_traffic
@@ -45,6 +46,17 @@ resource "azurerm_container_app" "conapp-be" {
         image = var.container_image
         cpu = var.container_cpu
         memory = var.container_memory
+      }
+    }
+#Transport set to auto or can be http depending on needs
+    ingress {
+      external_enabled = false
+      target_port = 8080
+      transport = "auto"
+      allow_insecure_connections = false
+      traffic_weight {
+        latest_revision = true
+        percentage = 100
       }
     }
 }

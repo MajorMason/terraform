@@ -37,7 +37,11 @@ variable "subnet_name" {
   type = string
 }
 
-variable "address_prefix" {
+variable "private_address_prefix" {
+  type = list(string)
+}
+
+variable "public_address_prefix" {
   type = list(string)
 }
 

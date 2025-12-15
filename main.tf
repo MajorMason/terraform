@@ -8,15 +8,16 @@ resource "azurerm_resource_group" "rg" {
 #Network module
 #Contains: Vnet, Subnet, Public IP, DNS Zones
 module "virtual_network" {
-  source              = "./modules/network"
-  resource_group_name = data.azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  vnet_name           = var.vnet_name
-  address_space       = var.address_space
-  environment         = var.environment
-  subnet_name         = var.subnet_name
-  address_prefix      = var.address_prefix
-  allocation_method   = "Static"
+  source                 = "./modules/network"
+  resource_group_name    = data.azurerm_resource_group.rg.name
+  location               = azurerm_resource_group.rg.location
+  vnet_name              = var.vnet_name
+  address_space          = var.address_space
+  environment            = var.environment
+  subnet_name            = var.subnet_name
+  private_address_prefix = var.private_address_prefix
+  public_address_prefix  = var.public_address_prefix
+  allocation_method      = "Static"
 }
 
 #Keyvault

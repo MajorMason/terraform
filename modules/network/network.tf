@@ -14,10 +14,17 @@ resource "azurerm_virtual_network" "vnet" {
 
 #In most cases, its better to deploy subnets separately from the VNET
 resource "azurerm_subnet" "private-subnet" {
-  name                 = "${var.environment}-subnet"
+  name                 = "${var.environment}-private-subnet"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.address_prefix
+  address_prefixes     = var.private_address_prefix
+}
+
+resource "azurerm_subnet" "public-subnet" {
+  name = "${var.environment}-public-subnet"
+  resource_group_name = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes = var.public_address_prefix
 }
 
 #If we used the dynamic allocation method, the terraform plan would show "known after apply"
