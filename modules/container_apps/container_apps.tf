@@ -12,6 +12,15 @@ resource "azurerm_container_app" "conapp-fe" {
         cpu = var.container_cpu
         memory = var.container_memory
       }
+
+      custom_scale_rule {
+        name = "${var.environment}-fe-scale-rule"
+        custom_rule_type = "cpu"
+        metadata = {
+          type = "Utilization"
+          value = "80"
+        }
+      }
     }
 
     ingress {
