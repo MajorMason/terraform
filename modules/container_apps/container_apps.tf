@@ -12,7 +12,7 @@ resource "azurerm_container_app" "conapp-fe" {
         cpu = var.container_cpu
         memory = var.container_memory
       }
-
+#The metadata is predefined on what string names can be used here
       custom_scale_rule {
         name = "${var.environment}-fe-scale-rule"
         custom_rule_type = "cpu"
