@@ -21,10 +21,10 @@ resource "azurerm_subnet" "private-subnet" {
 }
 
 resource "azurerm_subnet" "public-subnet" {
-  name = "${var.environment}-public-subnet"
-  resource_group_name = var.resource_group_name
+  name                 = "${var.environment}-public-subnet"
+  resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes = var.public_address_prefix
+  address_prefixes     = var.public_address_prefix
 }
 
 #If we used the dynamic allocation method, the terraform plan would show "known after apply"

@@ -2,8 +2,16 @@ output "rg_name" {
   value = var.resource_group_name
 }
 
-output "subnet_id" {
+output "vnet_name" {
+  value = azurerm_virtual_network.vnet.name
+}
+
+output "private_subnet_id" {
   value = azurerm_subnet.private-subnet.id
+}
+
+output "public_subnet_id" {
+  value = azurerm_subnet.public-subnet.id
 }
 
 output "public_ip_id" {

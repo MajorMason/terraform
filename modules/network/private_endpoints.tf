@@ -1,4 +1,5 @@
 #This Private Endpoint connects our Azure SQL Server to our VNET
+#Only PaaS resources can leverage private endpoints
 resource "azurerm_private_endpoint" "pe_azuresql" {
   name                = "${var.environment}-pe-azuresql"
   location            = var.location
@@ -32,7 +33,7 @@ resource "azurerm_private_endpoint" "pe_conapp_be" {
   name                = "${var.environment}-pe-conapp-be"
   location            = var.location
   resource_group_name = "${var.environment}-rg"
-  subnet_id           = data.azurerm_subnet.private-subnet.id
+  subnet_id           = azurerm_subnet.private-subnet.id
 
   private_service_connection {
     name                           = "private_endpoint_conapp_be"
