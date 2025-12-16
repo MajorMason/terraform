@@ -5,7 +5,7 @@ resource "azurerm_container_app_environment" "be-conapp-environment" {
   location = var.location
   resource_group_name = "${var.environment}-rg"
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace.id
-  infrastructure_subnet_id = data.azurerm_subnet.private_subnet_id.id
+  infrastructure_subnet_id = data.azurerm_subnet.private_subnet.id
 
   tags = {
     environment = var.environment
@@ -18,7 +18,7 @@ resource "azurerm_container_app_environment" "fe-conapp-environment" {
   location = var.location
   resource_group_name = "${var.environment}-rg"
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace
-  infrastructure_subnet_id = data.azurerm_subnet.public_subnet_id.id
+  infrastructure_subnet_id = data.azurerm_subnet.public_subnet.id
 
   tags = {
     environment = var.environment

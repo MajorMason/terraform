@@ -6,11 +6,11 @@ output "vnet_name" {
   value = azurerm_virtual_network.vnet.name
 }
 
-output "private_subnet_id" {
+output "private_subnet" {
   value = azurerm_subnet.private-subnet.id
 }
 
-output "public_subnet_id" {
+output "public_subnet" {
   value = azurerm_subnet.public-subnet.id
 }
 
