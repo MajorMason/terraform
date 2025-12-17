@@ -53,19 +53,26 @@ module "sql_server" {
   sql_lock       = var.sql_lock
 }
 
-#Container App & Environment
+#Container Apps & Environment
 module "container_apps" {
-  source                     = "./modules/container_apps"
-  conapp_fe_fqdn             = var.conapp_fe_fqdn
-  conapp_fe_port             = var.conapp_fe_port
-  conapp_fe_traffic          = var.conapp_fe_traffic
-  revision_mode              = var.revision_mode
-  container_name_fe          = var.container_name_fe
-  container_name_be          = var.container_name_be
-  container_image            = var.container_image
-  container_cpu              = var.container_cpu
-  container_memory           = var.container_memory
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace.id
+  source           = "./modules/container_apps"
+  revision_mode    = var.revision_mode
+  container_cpu    = var.container_cpu
+  container_memory = var.container_memory
+  #CountySuite API
+  conapp_be_image   = var.conapp_be_image
+  conapp_be_port    = var.conapp_be_port
+  conapp_be_traffic = var.conapp_be_traffic
+  #Prothonotary FE
+  conapp_fe_image   = var.conapp_fe_image
+  conapp_fe_fqdn    = var.conapp_fe_fqdn
+  conapp_fe_port    = var.conapp_fe_port
+  conapp_fe_traffic = var.conapp_fe_traffic
+  #Sheriff FE
+  sheriff_fe_image       = var.sheriff_fe_image
+  conapp_sheriff_fqdn    = var.conapp_sheriff_fqdn
+  conapp_sheriff_port    = var.conapp_sheriff_port
+  conapp_sheriff_traffic = var.conapp_sheriff_traffic
 }
 
 #Monitoring
