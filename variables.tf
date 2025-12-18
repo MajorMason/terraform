@@ -5,13 +5,11 @@ variable "resource_group_name" {
   type    = string
   default = "dev"
 }
-
 variable "location" {
   description = "The Azure region to deploy to"
   type        = string
   default     = "East US"
 }
-
 variable "environment" {
   description = "Environment name (dev, test or prod)"
   type        = string
@@ -27,7 +25,6 @@ variable "sql_lock" {
 variable "vnet_name" {
   type = string
 }
-
 variable "address_space" {
   type = list(string)
 }
@@ -36,11 +33,9 @@ variable "address_space" {
 variable "subnet_name" {
   type = string
 }
-
 variable "private_address_prefix" {
   type = list(string)
 }
-
 variable "public_address_prefix" {
   type = list(string)
 }
@@ -54,7 +49,6 @@ variable "allocation_method" {
 variable "keyvault_name" {
   type = string
 }
-
 variable "keyvault_sku_name" {
   type = string
 }
@@ -63,11 +57,9 @@ variable "keyvault_sku_name" {
 variable "account_kind" {
   type = string
 }
-
 variable "account_tier" {
   type = string
 }
-
 variable "replication_type" {
   type = string
 }
@@ -76,35 +68,27 @@ variable "replication_type" {
 variable "sql_version" {
   type = string
 }
-
 variable "sql_login" {
   type = string
 }
-
 variable "sql_pass" {
   type = string
 }
-
 variable "entraid_login" {
   type = string
 }
-
 variable "object_id" {
   type = string
 }
-
 variable "license_type" {
   type = string
 }
-
 variable "max_size_gb" {
   type = number
 }
-
 variable "sql_sku_name" {
   type = string
 }
-
 variable "zone_redundant" {
   type = bool
 }
@@ -121,26 +105,26 @@ variable "container_memory" {
   type = string
 }
 #CountySuite API
-variable "conapp_be_image" {
+variable "countysuite_api_image" {
   type = string
 }
-variable "conapp_be_port" {
+variable "conapp_api_port" {
   type = number
 }
-variable "conapp_be_traffic" {
+variable "conapp_api_traffic" {
   type = number
 }
 #Prothonotary FE
-variable "conapp_fe_image" {
+variable "prothonotary_fe_image" {
   type = string
 }
-variable "conapp_fe_fqdn" {
+variable "conapp_prothonotary_fqdn" {
   type = string
 }
-variable "conapp_fe_port" {
+variable "conapp_prothonotary_port" {
   type = number
 }
-variable "conapp_fe_traffic" {
+variable "conapp_prothonotary_traffic" {
   type = number
 }
 #Sheriff FE

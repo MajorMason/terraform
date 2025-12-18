@@ -1,13 +1,13 @@
-resource "azurerm_container_app" "conapp-be" {
-  name = "${var.environment}-BE"
+resource "azurerm_container_app" "conapp-api" {
+  name = "${var.environment}-countysuite-api"
   container_app_environment_id = azurerm_container_app_environment.be-conapp-environment.id
   resource_group_name = "${var.environment}-rg"
   revision_mode = var.revision_mode
 
     template {
       container {
-        name = azurerm_container_app.conapp-be.name
-        image = var.conapp_be_image
+        name = azurerm_container_app.conapp-api.name
+        image = var.countysuite_api_image
         cpu = var.container_cpu
         memory = var.container_memory
       }
@@ -15,27 +15,27 @@ resource "azurerm_container_app" "conapp-be" {
 #Transport set to auto or can be http depending on needs
     ingress {
       external_enabled = false
-      target_port = var.conapp_be_port
+      target_port = var.conapp_api_port
       transport = "auto"
       allow_insecure_connections = false
       traffic_weight {
         latest_revision = true
-        percentage = var.conapp_be_traffic
+        percentage = var.conapp_api_traffic
       }
     }
 }
 
 #The autoscaling functionality is provided by KEDA (Kubernetes Event-Driven Autoscaling)
-resource "azurerm_container_app" "conapp-fe" {
-  name = "${var.environment}-FE"
+resource "azurerm_container_app" "conapp-prothonotary" {
+  name = "${var.environment}-prothonotary-fe"
   container_app_environment_id = azurerm_container_app_environment.fe-conapp-environment.id
   resource_group_name = "${var.environment}-rg"
   revision_mode = var.revision_mode
 
     template {
       container {
-        name = azurerm_container_app.conapp-fe.name
-        image = var.conapp_fe_image
+        name = azurerm_container_app.conapp-prothonotary.name
+        image = var.prothonotary_fe_image
         cpu = var.container_cpu
         memory = var.container_memory
       }
@@ -51,12 +51,12 @@ resource "azurerm_container_app" "conapp-fe" {
     }
     ingress {
       external_enabled = true
-      target_port = var.conapp_fe_port
+      target_port = var.conapp_prothonotary_port
       transport = "auto"
-      fqdn = var.conapp_fe_fqdn
+      fqdn = var.conapp_prothonotary_fqdn
       traffic_weight {
         latest_revision = true
-        percentage = var.conapp_fe_traffic
+        percentage = var.conapp_prothonotary_traffic
       }
     }
 }

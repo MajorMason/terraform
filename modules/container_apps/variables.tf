@@ -21,26 +21,26 @@ variable "container_memory" {
   type = string
 }
 #CountySuite API
-variable "conapp_be_image" {
+variable "countysuite_api_image" {
   type = string
 }
-variable "conapp_be_port" {
+variable "conapp_api_port" {
   type = number
 }
-variable "conapp_be_traffic" {
+variable "conapp_api_traffic" {
   type = number
 }
 #Prothonotary FE
-variable "conapp_fe_image" {
+variable "prothonotary_fe_image" {
   type = string
 }
-variable "conapp_fe_fqdn" {
+variable "conapp_prothonotary_fqdn" {
   type = string
 }
-variable "conapp_fe_port" {
+variable "conapp_prothonotary_port" {
   type = number
 }
-variable "conapp_fe_traffic" {
+variable "conapp_prothonotary_traffic" {
   type = number
 }
 #Sheriff FE
@@ -56,4 +56,3 @@ variable "conapp_sheriff_port" {
 variable "conapp_sheriff_traffic" {
   type = number
 }
-
