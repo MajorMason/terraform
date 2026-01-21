@@ -26,6 +26,10 @@ resource "azurerm_private_endpoint" "pe_azuresql" {
     name                 = "azuresql_dns_zone_group"
     private_dns_zone_ids = [azurerm_private_dns_zone.azuresql_zone.id]
   }
+
+  tags = {
+    environment = "${var.environment}"
+  }
 }
 
 #This Private Endpoint connects our backend container app to our VNET
@@ -46,5 +50,9 @@ resource "azurerm_private_endpoint" "pe_conapp_be" {
   private_dns_zone_group {
     name                 = "conapp_be_dns_zone_group"
     private_dns_zone_ids = [azurerm_private_dns_zone.conapp_be_zone.id]
+  }
+
+  tags = {
+    environment = "${var.environment}"
   }
 }

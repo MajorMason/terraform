@@ -7,14 +7,14 @@ resource "azurerm_mssql_server" "sql-server" {
   administrator_login_password = var.sql_pass
   minimum_tls_version = "1.2"
 
-azuread_administrator {
+  azuread_administrator {
     login_username = var.entraid_login
     object_id = var.object_id
 }
 
-tags = {
-    environment = var.environment
-}
+  tags = {
+    environment = "${var.environment}"
+  }
 }
 
 resource "azurerm_management_lock" "sql-lock" {

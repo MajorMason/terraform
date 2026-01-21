@@ -23,6 +23,10 @@ resource "azurerm_container_app" "conapp-api" {
         percentage = var.conapp_api_traffic
       }
     }
+
+    tags = {
+      environment = "${var.environment}"
+    }
 }
 
 #The autoscaling functionality is provided by KEDA (Kubernetes Event-Driven Autoscaling)
@@ -59,6 +63,10 @@ resource "azurerm_container_app" "conapp-prothonotary" {
         percentage = var.conapp_prothonotary_traffic
       }
     }
+
+    tags = {
+      environment = "${var.environment}"
+    }
 }
 
 resource "azurerm_container_app" "conapp-sheriff" {
@@ -92,5 +100,9 @@ resource "azurerm_container_app" "conapp-sheriff" {
         latest_revision = true
         percentage = var.conapp_sheriff_traffic
       }
+    }
+
+    tags = {
+      environment = "${var.environment}"
     }
 }

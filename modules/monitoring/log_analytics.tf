@@ -4,5 +4,8 @@ resource "azurerm_log_analytics_workspace" "log-workspace" {
   resource_group_name = "${var.environment}-rg"
   sku                 = "PerGB2018"
   retention_in_days   = var.retention
-}
 
+  tags = {
+    environment = "${var.environment}"
+  }
+}
