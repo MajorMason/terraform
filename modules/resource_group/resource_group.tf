@@ -8,3 +8,8 @@ resource "azurerm_resource_group" "rg" {
     environment = var.environment
   }
 }
+
+resource "azurerm_resource_group" "tfstate-rg" {
+  name = "tfstate-rg"
+  location = var.location
+}
