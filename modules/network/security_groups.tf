@@ -1,3 +1,6 @@
+#Azure NSGs are stateful, and collapse both the ACLs and Security Groups into one
+#Unlike AWS that has separate methods (used together) for ACLs and Security Groups,
+#Azure only needs just NSGs and their rules (stateful only) to secure everything
 resource "azurerm_network_security_group" "backend_nsg" {
   name = "backend-nsg"
   location = var.location
