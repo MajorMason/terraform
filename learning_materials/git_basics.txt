@@ -20,7 +20,7 @@ you ultimately need to use SSH in the long run for better security/simplicity.
 6. "git push -u origin main" which pushes our changes to our repository.
 NOTE: All subsequent pushes can be done just via "git push".
 
-And you're done! You should be ready for "git pushes" now to your github repository.
+And you're done! You should be ready for "git pushes" to your github repository.
 
 Troubleshooting----------------------------------
 Tip: If you tried installing posh-git but then tried uninstalling the module and receieve
@@ -32,9 +32,7 @@ another executable, you'll need to delete the "git" folder from the project usin
 (making sure to reveal hidden items) then run a "git init" to reinitialize the directory.
 
 NOTE: If you receive the error "'terraform does not appear to be a git repository, could not read
-from remote repository", and you are leveraging HTTPS based UN/PWD auth, then you'll need to issue
-the following commands:
-git remote add terraform https://github.com/MajorMason/terraform.git
+from remote repository" you may need this cmd:
 git push --set-upstream terraform main
 
 NOTE: If you receive an error "Author identity unknown" then modify the gitconfig file located

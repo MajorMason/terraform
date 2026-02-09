@@ -14,6 +14,5 @@ A subscription can contain resource groups that we provision with Terraform.
 Recall back to previous DevOps jobs, where for billing purposes you'll have different subscriptions
 for separating your environments such as: dev, test, and prod.
 
-NOTE: Each subscription can only trust a single directory (Entra ID tenant), while
-multiple subscriptions can trust the same Entra ID tenant, you cannot have multiple Entra ID tenants
-assigned to a single subscription.
+NOTE: Each subscription can trust either a single or multiple Entra ID tenants, however, you
+cannot have multiple Entra ID tenants assigned to a single subscription.
