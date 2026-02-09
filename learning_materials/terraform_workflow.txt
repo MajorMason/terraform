@@ -11,19 +11,6 @@ terraform init \
 -We can keep our git-based workflow in VSCode, that does not change.
 
 The Gotcha:
--However, we will manually need to upload our TFVars files to our AZ Storage Account as there is no automated way to do this.
-
-Legacy Terraform workflow using Workspaces--------
-Here are a list of commands that we can use in order to switch bewteen workspaces.
-Workspaces are important, because each workspace has a state file associated with it.
-We will have one workspace for dev, and another for prod, that way we can still use the same
-VSCode project/repository to rule multiple subscriptions.
-
-NOTE: In order to run a terraform workspace command, you need to run a terraform init first.
-In our case, due to budget constraints and not having an Azure subscription, we'll simulate
-as if we did use them.
-
-terraform workspace new dev
-terraform workspace new prod
-terraform workspace select dev
-terraform apply
+We will manually need to upload our TFVars files to our AZ Storage Account as there is no automated way to do this.
+NOTE: We do not want to use any terraform workspace cmds because this interrupts our CI/CD Git flow, and prevents
+other contributors (DevOps) from working on the same project easily due to tfstate discrepancies.

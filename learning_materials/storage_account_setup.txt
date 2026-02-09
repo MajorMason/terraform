@@ -30,13 +30,3 @@ our git-workflow which supports the use of a repository for our Terraform code.
 NOTE: "terraform init" and "terraform apply" cmds are the ones that auto-leverage the backend.tf
 file which is how our ADO Build Pipeline can do all the uploading of the tfstate files. It also
 circumvents having to deal with "terraform workspace" commands (discussed in separate notes file.)
-
-TFVars Upload approach-------------------------
-After much review and thought, we're opting in for the semi-auto approach where we run
-the following Azure CLI based commands to upload our tfvars files to our tfvars storage container:
-
-az storage blob upload \
-  --account-name terraform-storage \
-  --container-name tfvars \
-  --name dev.tfvars \
-  --file ./dev.tfvars
