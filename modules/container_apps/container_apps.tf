@@ -11,6 +11,14 @@ resource "azurerm_container_app" "conapp-api" {
         cpu = var.container_cpu
         memory = var.container_memory
       }
+      custom_scale_rule {
+        name = "${var.environment}-fe-scale-rule"
+        custom_rule_type = "cpu"
+        metadata = {
+          type = "Utilization"
+          value = "75"
+        }
+      }
     }
 #Transport set to auto or can be http depending on needs
     ingress {
