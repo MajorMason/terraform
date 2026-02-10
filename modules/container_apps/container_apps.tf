@@ -12,7 +12,7 @@ resource "azurerm_container_app" "conapp-api" {
         memory = var.container_memory
       }
       custom_scale_rule {
-        name = "${var.environment}-fe-scale-rule"
+        name = "${var.environment}-api-scale-rule"
         custom_rule_type = "cpu"
         metadata = {
           type = "Utilization"
