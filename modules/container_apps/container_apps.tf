@@ -7,7 +7,7 @@ resource "azurerm_container_app" "conapp-api" {
     template {
       container {
         name = azurerm_container_app.conapp-api.name
-        image = var.countysuite_api_image
+        image = "majormason/mysite:countysuite_api"
         cpu = var.container_cpu
         memory = var.container_memory
       }
@@ -47,7 +47,7 @@ resource "azurerm_container_app" "conapp-prothonotary" {
     template {
       container {
         name = azurerm_container_app.conapp-prothonotary.name
-        image = var.prothonotary_fe_image
+        image = "majormason/mysite:prothonotary_fe"
         cpu = var.container_cpu
         memory = var.container_memory
       }
@@ -86,7 +86,7 @@ resource "azurerm_container_app" "conapp-sheriff" {
     template {
       container {
         name = azurerm_container_app.conapp-sheriff.name
-        image = var.sheriff_fe_image
+        image = "majormason/mysite:sheriff_fe"
         cpu = var.container_cpu
         memory = var.container_memory
       }

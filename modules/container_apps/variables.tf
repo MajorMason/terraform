@@ -21,9 +21,6 @@ variable "container_memory" {
   type = string
 }
 #CountySuite API
-variable "countysuite_api_image" {
-  type = string
-}
 variable "conapp_api_port" {
   type = number
 }
@@ -31,9 +28,6 @@ variable "conapp_api_traffic" {
   type = number
 }
 #Prothonotary FE
-variable "prothonotary_fe_image" {
-  type = string
-}
 variable "conapp_prothonotary_fqdn" {
   type = string
 }
@@ -44,9 +38,6 @@ variable "conapp_prothonotary_traffic" {
   type = number
 }
 #Sheriff FE
-variable "sheriff_fe_image" {
-  type = string
-}
 variable "conapp_sheriff_fqdn" {
   type = string
 }

@@ -60,16 +60,13 @@ module "container_apps" {
   container_cpu    = var.container_cpu
   container_memory = var.container_memory
   #CountySuite API
-  countysuite_api_image = var.countysuite_api_image
-  conapp_api_port       = var.conapp_api_port
-  conapp_api_traffic    = var.conapp_api_traffic
+  conapp_api_port    = var.conapp_api_port
+  conapp_api_traffic = var.conapp_api_traffic
   #Prothonotary FE
-  prothonotary_fe_image       = var.prothonotary_fe_image
   conapp_prothonotary_port    = var.conapp_prothonotary_port
   conapp_prothonotary_fqdn    = var.conapp_prothonotary_fqdn
   conapp_prothonotary_traffic = var.conapp_prothonotary_traffic
   #Sheriff FE
-  sheriff_fe_image       = var.sheriff_fe_image
   conapp_sheriff_fqdn    = var.conapp_sheriff_fqdn
   conapp_sheriff_port    = var.conapp_sheriff_port
   conapp_sheriff_traffic = var.conapp_sheriff_traffic
