@@ -33,23 +33,23 @@ resource "azurerm_private_endpoint" "pe_azuresql" {
 }
 
 #This Private Endpoint connects our backend container app to our VNET
-resource "azurerm_private_endpoint" "pe_conapp_be" {
-  name                = "${var.environment}-pe-conapp-be"
+resource "azurerm_private_endpoint" "pe_conapp_api" {
+  name                = "${var.environment}-pe-conapp-api"
   location            = var.location
   resource_group_name = "${var.environment}-rg"
   subnet_id           = azurerm_subnet.private-subnet.id
 
   private_service_connection {
-    name                           = "private_endpoint_conapp_be"
+    name                           = "private_endpoint_conapp_api"
     subresource_names              = ["managedEnvironments"]
-    private_connection_resource_id = data.azurerm_container_app.conapp-be.id
+    private_connection_resource_id = data.azurerm_container_app.conapp-api.id
     is_manual_connection           = false
-    request_message = "Connection incoming from ContainerApp-BE"
+    request_message = "Connection incoming from ContainerApp-API"
   }
 
   private_dns_zone_group {
-    name                 = "conapp_be_dns_zone_group"
-    private_dns_zone_ids = [azurerm_private_dns_zone.conapp_be_zone.id]
+    name                 = "conapp_api_dns_zone_group"
+    private_dns_zone_ids = [azurerm_private_dns_zone.conapp_api_zone.id]
   }
 
   tags = {
