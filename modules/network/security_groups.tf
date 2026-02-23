@@ -16,6 +16,7 @@ resource "azurerm_network_security_group" "backend_nsg" {
 #Since NSGs are stateful, you create inbound allow rules on the NSG attached to either:
 #-the subnet hosting your container environment, or
 #-the NIC of the compute resource (VM, Container Instance, etc.)
+#We don't need any rules for Azure DNS resolver since its built in
 resource "azurerm_network_security_rule" "fe_80_nsr" {
   name                        = "fe-80-allow"
   priority                    = 130
