@@ -13,6 +13,8 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 #In most cases, its better to deploy subnets separately from the VNET
+#In Azure, all subnets are private by default, and are only public when you attach a public IP
+#to whatever resource you assign it to, then assign it to an NSG
 resource "azurerm_subnet" "private-subnet" {
   name                 = "${var.environment}-private-subnet"
   resource_group_name  = var.resource_group_name
