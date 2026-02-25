@@ -4,7 +4,7 @@
 resource "azurerm_virtual_network" "vnet" {
   name                = "${var.environment}-vnet"
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = "${var.environment}-rg"
   address_space       = var.address_space
 
   tags = {
@@ -17,14 +17,14 @@ resource "azurerm_virtual_network" "vnet" {
 #to whatever resource you assign it to, then assign it to an NSG
 resource "azurerm_subnet" "private-subnet" {
   name                 = "${var.environment}-private-subnet"
-  resource_group_name  = var.resource_group_name
+  resource_group_name  = "${var.environment}-rg"
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.private_address_prefix
 }
 
 resource "azurerm_subnet" "public-subnet" {
   name                 = "${var.environment}-public-subnet"
-  resource_group_name  = var.resource_group_name
+  resource_group_name  = "${var.environment}-rg"
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.public_address_prefix
 }
@@ -33,7 +33,7 @@ resource "azurerm_subnet" "public-subnet" {
 #since Azure won't assign an IP until after its attached to a resource
 resource "azurerm_public_ip" "public-ip" {
   name                = "${var.environment}-public-ip"
-  resource_group_name = var.resource_group_name
+  resource_group_name = "${var.environment}-rg"
   location            = var.location
   allocation_method   = "Static"
 

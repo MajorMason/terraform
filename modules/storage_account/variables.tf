@@ -10,6 +10,7 @@ variable "environment" {
   type        = string
 }
 
+#Storage Account
 variable "account_kind" {
   type = string
 }

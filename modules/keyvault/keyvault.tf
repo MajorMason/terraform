@@ -2,7 +2,7 @@
 #You can use either an MI or a Service Principal (but an MI is simpler long term)
 resource "azurerm_key_vault" "keyvault" {
   name                        = "${var.environment}-keyvault"
-  resource_group_name         = var.resource_group_name
+  resource_group_name         = "${var.environment}rg"
   location                    = var.location
   enabled_for_disk_encryption = true
   tenant_id                   = var.tenant_id

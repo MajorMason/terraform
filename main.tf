@@ -1,16 +1,8 @@
-#Resource Group module
-#NOTE: We need the actual resource group referenced here since we're unable to point to the module
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.environment}-rg"
-  location = var.location
-}
-
 #Network module
 #Contains: Vnet, Subnet, Public IP, DNS Zones
 module "virtual_network" {
   source                 = "./modules/network"
-  resource_group_name    = data.azurerm_resource_group.rg.name
-  location               = azurerm_resource_group.rg.location
+  location               = var.location
   vnet_name              = var.vnet_name
   address_space          = var.address_space
   environment            = var.environment
@@ -22,12 +14,11 @@ module "virtual_network" {
 
 #Keyvault
 module "keyvault" {
-  source              = "./modules/keyvault"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  keyvault_name       = var.keyvault_name
-  keyvault_sku_name   = var.keyvault_sku_name
-  tenant_id           = data.azurerm_client_config.current.tenant_id
+  source            = "./modules/keyvault"
+  location          = var.location
+  keyvault_name     = var.keyvault_name
+  keyvault_sku_name = var.keyvault_sku_name
+  tenant_id         = data.azurerm_client_config.current.tenant_id
 }
 
 #Storage Account

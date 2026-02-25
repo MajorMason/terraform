@@ -10,6 +10,7 @@ variable "environment" {
   type        = string
 }
 
+#SQL Server & DBs
 variable "sql_version" {
   type = string
 }

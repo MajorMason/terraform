@@ -4,7 +4,7 @@
 #Azure SQL DNS Zone & Link
 resource "azurerm_private_dns_zone" "azuresql_zone" {
   name                = "privatelink.database.windows.net"
-  resource_group_name = var.resource_group_name
+  resource_group_name = "${var.environment}-rg"
 
   tags = {
     environment = "${var.environment}"

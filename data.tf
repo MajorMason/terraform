@@ -3,10 +3,6 @@
 #Client Config
 data "azurerm_client_config" "current" {}
 
-data "azurerm_resource_group" "rg" {
-  name = "${var.environment}-rg"
-}
-
 data "azurerm_log_analytics_workspace" "log-workspace" {
   name                = "${var.environment}-log-workspace"
   resource_group_name = "${var.environment}-rg"
