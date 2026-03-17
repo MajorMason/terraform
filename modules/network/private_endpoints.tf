@@ -1,5 +1,5 @@
 #This Private Endpoint connects our Azure SQL Server to our VNET
-#Only PaaS resources can leverage private endpoints
+#Only PaaS resources can leverage private endpoints unless PLS is used to expand beyond PaaS
 #This means both the private endpoints found on this page have a route to each other
 #while all other resources on the VNET/subnet do not
 resource "azurerm_private_endpoint" "pe_azuresql" {
