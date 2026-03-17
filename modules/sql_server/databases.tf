@@ -33,3 +33,9 @@ resource "azurerm_mssql_database" "repo-database" {
     environment = var.environment
   }
 }
+
+#This SQL script below will create the necessary SQL user for the backend API conapp to leverage
+#NOTE: EXTERNAL PROVIDER is a built-in with Azure SQL Server
+#CREATE USER [<backend-app-msi-name>] FROM EXTERNAL PROVIDER;
+#ALTER ROLE db_datareader ADD MEMBER [<backend-app-msi-name>];
+#ALTER ROLE db_datawriter ADD MEMBER [<backend-app-msi-name>];

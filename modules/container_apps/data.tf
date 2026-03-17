@@ -8,9 +8,3 @@ data "azurerm_subnet" "private_subnet" {
   resource_group_name  = "${var.environment}-rg"
   virtual_network_name = "${var.environment}-vnet"
 }
-
-data "azurerm_subnet" "public_subnet" {
-  name                 = "${var.environment}-public-subnet"
-  resource_group_name  = "${var.environment}-rg"
-  virtual_network_name = "${var.environment}-vnet"
-}

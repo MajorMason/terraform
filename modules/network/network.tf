@@ -21,23 +21,3 @@ resource "azurerm_subnet" "private-subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.private_address_prefix
 }
-
-resource "azurerm_subnet" "public-subnet" {
-  name                 = "${var.environment}-public-subnet"
-  resource_group_name  = "${var.environment}-rg"
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.public_address_prefix
-}
-
-#If we used the dynamic allocation method, the terraform plan would show "known after apply"
-#since Azure won't assign an IP until after its attached to a resource
-resource "azurerm_public_ip" "public-ip" {
-  name                = "${var.environment}-public-ip"
-  resource_group_name = "${var.environment}-rg"
-  location            = var.location
-  allocation_method   = "Static"
-
-  tags = {
-    environment = var.environment
-  }
-}

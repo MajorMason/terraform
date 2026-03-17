@@ -10,7 +10,7 @@ resource "azurerm_mssql_server" "sql-server" {
   azuread_administrator {
     login_username = var.entraid_login
     object_id = var.object_id
-}
+  }
 
   tags = {
     environment = "${var.environment}"

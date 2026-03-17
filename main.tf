@@ -8,8 +8,6 @@ module "virtual_network" {
   environment            = var.environment
   subnet_name            = var.subnet_name
   private_address_prefix = var.private_address_prefix
-  public_address_prefix  = var.public_address_prefix
-  allocation_method      = "Static"
 }
 
 #Keyvault
@@ -44,7 +42,7 @@ module "sql_server" {
   sql_lock       = var.sql_lock
 }
 
-#Container Apps & Environment
+#Container Apps
 module "container_apps" {
   source           = "./modules/container_apps"
   revision_mode    = var.revision_mode
