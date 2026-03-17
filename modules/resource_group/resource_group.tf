@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "rg" {
   }
 }
 
-resource "azurerm_resource_group" "tfstate-rg" {
-  name = "tfstate-rg"
+resource "azurerm_resource_group" "terraform-rg" {
+  name = "terraform-rg"
   location = var.location
 }
