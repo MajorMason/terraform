@@ -1,13 +1,13 @@
-# Terraform Azure SaaS Infrastructure
+# Terraform Azure PaaS Infrastructure
 
-This repository contains Terraform code for deploying a secure, modular SaaS application architecture on Microsoft Azure.
+This repository contains Terraform code for deploying a secure, modular PaaS application architecture on Microsoft Azure.
 The main deployment provisions frontend and backend Azure Container Apps, an Azure SQL Database instance, and a private virtual network to ensure controlled access and isolation between components.
 
 ---
 
 ## 📘 Overview
 
-The infrastructure is designed around a containerized SaaS application with strict network boundaries. Frontend services are publicly accessible, while backend services and the database remain fully private via private endpoints.
+The infrastructure is designed around a containerized PaaS application with strict network boundaries. Frontend services are publicly accessible, while backend services and the database remain fully private via private endpoints.
 
 ### Key Components
 
