@@ -6,7 +6,7 @@ resource "azurerm_container_app_environment" "conapp-environment" {
   resource_group_name = "${var.environment}-rg"
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace.id
   infrastructure_subnet_id = data.azurerm_subnet.private_subnet.id
-
+#Azure Monitor is where we are analyzing all our container metrics from the LA workspace
   tags = {
     environment = var.environment
   }
