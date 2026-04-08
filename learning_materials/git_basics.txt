@@ -41,3 +41,15 @@ make sure to add the following lines at the bottom (with indentations):
 [user]
     name = (your exact name as listed on github)
     email = (email associated with your github login)
+
+NOTE: If your local VSCode is behind the remote branch (the repository's main branch in GitHub) perform
+the following steps if you just want your machine to match the remote exactly.
+
+git fetch --all
+git reset --hard origin/main
+git clean -fd
+
+What this does:
+    fetch → gets the latest remote commits
+    reset --hard → makes your local branch identical to the remote
+    clean -fd → removes untracked files/folders
