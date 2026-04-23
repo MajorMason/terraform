@@ -1,13 +1,15 @@
 #Network module
 #Contains: Vnet, Subnet, Public IP, DNS Zones
 module "virtual_network" {
-  source                 = "./modules/network"
-  location               = var.location
-  vnet_name              = var.vnet_name
-  address_space          = var.address_space
-  environment            = var.environment
-  subnet_name            = var.subnet_name
-  private_address_prefix = var.private_address_prefix
+  source                   = "./modules/network"
+  location                 = var.location
+  vnet_name                = var.vnet_name
+  address_space            = var.address_space
+  environment              = var.environment
+  subnet_name              = var.subnet_name
+  private_address_prefix   = var.private_address_prefix
+  azurerm_mssql_server_id  = var.azurerm_mssql_server_id
+  azurerm_container_app_id = var.azurerm_container_app_id
 }
 
 #Keyvault
@@ -44,10 +46,12 @@ module "sql_server" {
 
 #Container Apps
 module "container_apps" {
-  source           = "./modules/container_apps"
-  revision_mode    = var.revision_mode
-  container_cpu    = var.container_cpu
-  container_memory = var.container_memory
+  source                     = "./modules/container_apps"
+  revision_mode              = var.revision_mode
+  container_cpu              = var.container_cpu
+  container_memory           = var.container_memory
+  log_analytics_workspace_id = var.log_analytics_workspace_id
+  infrastructure_subnet_id   = var.infrastructure_subnet_id
   #CountySuite API
   conapp_api_port    = var.conapp_api_port
   conapp_api_traffic = var.conapp_api_traffic
@@ -63,7 +67,6 @@ module "container_apps" {
 
 #Monitoring
 module "log_analytics_workspace" {
-  source                     = "./modules/monitoring"
-  retention                  = var.retention
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace.id
+  source    = "./modules/monitoring"
+  retention = var.retention
 }

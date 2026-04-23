@@ -1,0 +1,32 @@
+When it comes to referencing information from one module directory to another, the pattern is the same.
+Whether its needing a specific piece of information such as "name" or "id", we will always
+leverage: output → variable → use variable in necessary resource codeblock.
+
+Terraform can only obtain information in two different ways:
+1. Resources (its in my Terraform/tfstate)
+2. Data Object (something that's outside of my Terraform/tfstate)
+
+Real World Variable-Based Example:
+✅ Example in storage_account module:
+resource "azurerm_storage_account" "functions_account" {
+  name                = "${var.environment}functionsaccount"
+  resource_group_name = "${var.environment}-rg"
+}
+
+Then storage_account module outputs it:
+output "storage_account_name" {
+  value = azurerm_storage_account.functions_account.name
+}
+
+Then serverless_functions module receives it in its variables.tf file:
+variable "storage_account_name" {}
+
+Then inside serverless_functions module, you reference it like:
+storage_account_name = var.storage_account_name
+
+This "variablization" is done behind the scenes like we've seen in our other Terraform projects.
+
+So remember:
+-Outputs + Variables will always be used as that's the communication medium between modules.
+-Resource VS Data Objects will vary depending on whether the info requested comes from our tfstate.
+-When using Data Objects, you'll reference it within the same module you're requesting it from.

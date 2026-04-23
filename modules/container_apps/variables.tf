@@ -47,3 +47,13 @@ variable "conapp_sheriff_port" {
 variable "conapp_sheriff_traffic" {
   type = number
 }
+
+#Output Variables
+#Log Analytics
+variable "log_analytics_workspace_id" {
+  type = string
+}
+#Subnet
+variable "infrastructure_subnet_id" {
+  type = string
+}

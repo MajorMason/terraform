@@ -14,8 +14,3 @@ variable "retention" {
     description = "Amount of days log analytics data is to be retained"
     type = string
 }
-
-variable "log_analytics_workspace_id" {
-  type        = string
-  description = "ID of the Log Analytics workspace"
-}

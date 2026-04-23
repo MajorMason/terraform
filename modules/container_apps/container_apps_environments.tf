@@ -4,8 +4,8 @@ resource "azurerm_container_app_environment" "conapp-environment" {
   name = "${var.environment}-conapp-environment"
   location = var.location
   resource_group_name = "${var.environment}-rg"
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log-workspace.id
-  infrastructure_subnet_id = data.azurerm_subnet.private_subnet.id
+  log_analytics_workspace_id = var.log_analytics_workspace_id
+  infrastructure_subnet_id = var.infrastructure_subnet_id
 #Azure Monitor is where we are analyzing all our container metrics from the LA workspace
   tags = {
     environment = var.environment

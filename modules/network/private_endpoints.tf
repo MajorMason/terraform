@@ -15,11 +15,11 @@ resource "azurerm_private_endpoint" "pe_azuresql" {
 #The manual_connection boolean is set to false since we've not connecting to another tenant
 #nor subscription in our use case
   private_service_connection {
-    name                              = "private_endpoint_azuresql"
-    subresource_names                 = ["sqlServer"]
-    private_connection_resource_id = data.azurerm_mssql_server.sql-server.id
-    is_manual_connection              = false
-    request_message                   = "Connection established for Azure SQL Server."
+    name                           = "private_endpoint_azuresql"
+    subresource_names              = ["sqlServer"]
+    private_connection_resource_id = var.azurerm_mssql_server_id
+    is_manual_connection           = false
+    request_message                = "Connection established for Azure SQL Server."
   }
 
 #The codeblock below helps resolve the SQL FQDN to the private IP and links it to our DNS zone
@@ -44,7 +44,7 @@ resource "azurerm_private_endpoint" "pe_conapp_api" {
   private_service_connection {
     name                           = "private_endpoint_conapp_api"
     subresource_names              = ["managedEnvironments"]
-    private_connection_resource_id = data.azurerm_container_app.conapp-api.id
+    private_connection_resource_id = var.azurerm_container_app_id
     is_manual_connection           = false
     request_message = "Connection incoming from ContainerApp-API"
   }

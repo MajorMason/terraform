@@ -18,7 +18,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "azuresql_zone_vnet_lin
   virtual_network_id    = azurerm_virtual_network.vnet.id
 }
 
-#Azure Container App Zone & Link
+#Azure Container App DNS Zone & Link
 resource "azurerm_private_dns_zone" "conapp_api_zone" {
   name                = "privatelink.eastus.azurecontainerapps.io"
   resource_group_name = "${var.environment}-rg"

@@ -129,3 +129,20 @@ variable "conapp_sheriff_traffic" {
 variable "retention" {
   type = number
 }
+
+#Output Variables
+#Log Analytics
+variable "log_analytics_workspace_id" {
+  type = string
+}
+#Subnet
+variable "infrastructure_subnet_id" {
+  type = string
+}
+#SQL Server
+variable "azurerm_mssql_server_id" {
+  type = string
+}
+variable "azurerm_container_app_id" {
+  type = string
+}

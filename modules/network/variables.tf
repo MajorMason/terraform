@@ -27,3 +27,12 @@ variable "subnet_name" {
 variable "private_address_prefix" {
   type = list(string)
 }
+
+#Output Variables
+#SQL Server
+variable "azurerm_mssql_server_id" {
+  type = string
+}
+variable "azurerm_container_app_id" {
+  type = string
+}
