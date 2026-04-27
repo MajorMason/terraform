@@ -11,6 +11,8 @@ resource "azurerm_mssql_database" "database" {
     prevent_destroy = true
   }
 
+  depends_on = [azurerm_mssql_server.sql-server]
+
   tags = {
     environment = var.environment
   }
@@ -28,6 +30,8 @@ resource "azurerm_mssql_database" "repo-database" {
   lifecycle {
     prevent_destroy = true
   }
+
+  depends_on = [azurerm_mssql_server.sql-server]
 
   tags = {
     environment = var.environment
