@@ -42,7 +42,7 @@ resource "azurerm_container_app" "conapp-api" {
     }
 
     tags = {
-      environment = "${var.environment}"
+      environment = var.environment
     }
 }
 
@@ -87,7 +87,7 @@ resource "azurerm_container_app" "conapp-prothonotary" {
     }
 
     tags = {
-      environment = "${var.environment}"
+      environment = var.environment
     }
 }
 
@@ -129,6 +129,6 @@ resource "azurerm_container_app" "conapp-sheriff" {
     }
 
     tags = {
-      environment = "${var.environment}"
+      environment = var.environment
     }
 }

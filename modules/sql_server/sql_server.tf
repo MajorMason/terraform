@@ -13,7 +13,7 @@ resource "azurerm_mssql_server" "sql-server" {
   }
 
   tags = {
-    environment = "${var.environment}"
+    environment = var.environment
   }
 }
 

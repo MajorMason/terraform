@@ -7,7 +7,7 @@ resource "azurerm_private_dns_zone" "azuresql_zone" {
   resource_group_name = "${var.environment}-rg"
 
   tags = {
-    environment = "${var.environment}"
+    environment = var.environment
   }
 }
 
@@ -24,7 +24,7 @@ resource "azurerm_private_dns_zone" "conapp_api_zone" {
   resource_group_name = "${var.environment}-rg"
 
   tags = {
-    environment = "${var.environment}"
+    environment = var.environment
   }
 }
 

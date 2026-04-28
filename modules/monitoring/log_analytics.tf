@@ -6,6 +6,6 @@ resource "azurerm_log_analytics_workspace" "log-workspace" {
   retention_in_days   = var.retention
 
   tags = {
-    environment = "${var.environment}"
+    environment = var.environment
   }
 }
