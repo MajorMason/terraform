@@ -30,7 +30,7 @@ resource "azurerm_private_endpoint" "pe_azuresql" {
   }
 
   tags = {
-    environment = "${var.environment}"
+    environment = var.environment
   }
 }
 
@@ -55,6 +55,6 @@ resource "azurerm_private_endpoint" "pe_conapp_api" {
   }
 
   tags = {
-    environment = "${var.environment}"
+    environment = var.environment
   }
 }
