@@ -1,0 +1,89 @@
+"Each" Basics---
+"each" is automatically created by Terraform whenever you use:
+
+for_each = <some map or set>
+
+It’s not a variable you define.
+It’s not a local.
+It’s not a resource attribute.
+
+Terraform injects it into the resource block.
+
+
+What does "each" contain?---
+Inside a resource using for_each, Terraform gives you:
+each.key (The key of the current element in the map.)
+each.value (The value of the current element in the map.)
+
+That’s it.
+Two fields.
+Always available.
+Always the same names.
+
+
+The origin of our each.value?---
+So where does our each.value come from in our particular APIM setup?
+Let's take a close look below at what's being outputted from our serverless_functions module's locals.tf file:
+
+#Think of locals as a way to avoid repeating ourselves, which saves on resource codeblock repetition.
+#The flow across all three of our locals blocks is:
+#-You define local.functions
+#-Terraform reads local.functions to build local.function_routes
+#-Terraform reads local.function_routes to build local.function_routes_map
+#Nothing loops backward. Below is a snipped from our locals.tf file within the serverless_functions module:
+locals {
+  functions = {
+    datareader = {
+      hostname = azurerm_linux_function_app.function-datareader.default_hostname
+      routes = [
+        { name = "get-items", method = "GET",  path = "/items" },
+        { name = "get-item",  method = "GET",  path = "/items/{id}" }
+      ]
+    }
+  }
+}
+
+#This locals.function_routes block lets Terraform take our nested structure we defined above, and
+#turns it into a simple list via the flatten function:
+locals {
+  function_routes = flatten([
+    for fn_name, fn in local.functions : [
+      for route in fn.routes : {
+        fn_name = fn_name
+        name    = route.name
+        method  = route.method
+        path    = route.path
+      }
+    ]
+  ])
+}
+
+And produces something like this (see the pattern):
+
+[
+  { fn_name = "datareader", name = "get-items", method = "GET", path = "/items" },
+  { fn_name = "datareader", name = "get-item",  method = "GET", path = "/items/{id}" },
+  { fn_name = "datawriter", name = "create-item", method = "POST", path = "/items" },
+  { fn_name = "datadriver", name = "drive", method = "POST", path = "/drive" }
+]
+
+And lastly, Terraform needs a map for for_each, so we convert the list:
+locals {
+  function_routes_map = {
+    for route in local.function_routes :
+    "${route.fn_name}-${route.name}" => route
+  }
+}
+We get the following output which again, uses the same basic plug & chug as before:
+
+{
+  "datareader-get-items" = { ... }
+  "datareader-get-item"  = { ... }
+  "datawriter-create-item" = { ... }
+  "datadriver-drive" = { ... }
+}
+
+This output above is the direct source of each.key and each.value.
+This ultimately allows Terraform to loop over each route and fill out:
+an APIM operation's arguments
+an APIM policy's arguments
