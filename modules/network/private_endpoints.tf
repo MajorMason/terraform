@@ -1,7 +1,4 @@
 #This Private Endpoint connects our Azure SQL Server to our VNET
-#Only PaaS resources can leverage private endpoints unless PLS is used to expand beyond PaaS
-#This means both the private endpoints found on this page have a route to each other
-#while all other resources on the VNET/subnet do not
 resource "azurerm_private_endpoint" "pe_azuresql" {
   name                = "${var.environment}-pe-azuresql"
   location            = var.location
@@ -26,7 +23,7 @@ resource "azurerm_private_endpoint" "pe_azuresql" {
 #If you do not use this codeblock, then we'd have to manually configure a DNS record ourselves
   private_dns_zone_group {
     name                 = "azuresql_dns_zone_group"
-    private_dns_zone_ids = [azurerm_private_dns_zone.azuresql_zone.id]
+    private_dns_zone_ids = [for zone in azurerm_private_dns_zone.dns_zones : zone.id]
   }
 
   tags = {
@@ -43,7 +40,7 @@ resource "azurerm_private_endpoint" "pe_conapp_api" {
 
   private_service_connection {
     name                           = "private_endpoint_conapp_api"
-    subresource_names              = ["managedEnvironments"]
+    subresource_names              = ["containerapps"]
     private_connection_resource_id = var.azurerm_container_app_id
     is_manual_connection           = false
     request_message = "Connection incoming from ContainerApp-API"
@@ -51,7 +48,7 @@ resource "azurerm_private_endpoint" "pe_conapp_api" {
 
   private_dns_zone_group {
     name                 = "conapp_api_dns_zone_group"
-    private_dns_zone_ids = [azurerm_private_dns_zone.conapp_api_zone.id]
+    private_dns_zone_ids = [for zone in azurerm_private_dns_zone.dns_zones : zone.id]
   }
 
   tags = {
