@@ -10,7 +10,7 @@ variable "environment" {
   type        = string
 }
 
-#Shared
+#Common
 variable "revision_mode" {
   type = string
 }
@@ -20,11 +20,11 @@ variable "container_cpu" {
 variable "container_memory" {
   type = string
 }
-#CountySuite API
-variable "conapp_api_port" {
+variable "traffic_weight" {
   type = number
 }
-variable "conapp_api_traffic" {
+#CountySuite API
+variable "conapp_api_port" {
   type = number
 }
 #Prothonotary FE
@@ -34,17 +34,11 @@ variable "conapp_prothonotary_fqdn" {
 variable "conapp_prothonotary_port" {
   type = number
 }
-variable "conapp_prothonotary_traffic" {
-  type = number
-}
 #Sheriff FE
 variable "conapp_sheriff_fqdn" {
   type = string
 }
 variable "conapp_sheriff_port" {
-  type = number
-}
-variable "conapp_sheriff_traffic" {
   type = number
 }
 

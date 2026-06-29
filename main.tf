@@ -52,17 +52,15 @@ module "container_apps" {
   container_memory           = var.container_memory
   log_analytics_workspace_id = var.log_analytics_workspace_id
   infrastructure_subnet_id   = var.infrastructure_subnet_id
+  traffic_weight             = var.traffic_weight
   #CountySuite API
-  conapp_api_port    = var.conapp_api_port
-  conapp_api_traffic = var.conapp_api_traffic
+  conapp_api_port = var.conapp_api_port
   #Prothonotary FE
-  conapp_prothonotary_port    = var.conapp_prothonotary_port
-  conapp_prothonotary_fqdn    = var.conapp_prothonotary_fqdn
-  conapp_prothonotary_traffic = var.conapp_prothonotary_traffic
+  conapp_prothonotary_port = var.conapp_prothonotary_port
+  conapp_prothonotary_fqdn = var.conapp_prothonotary_fqdn
   #Sheriff FE
-  conapp_sheriff_fqdn    = var.conapp_sheriff_fqdn
-  conapp_sheriff_port    = var.conapp_sheriff_port
-  conapp_sheriff_traffic = var.conapp_sheriff_traffic
+  conapp_sheriff_fqdn = var.conapp_sheriff_fqdn
+  conapp_sheriff_port = var.conapp_sheriff_port
 }
 
 #Monitoring

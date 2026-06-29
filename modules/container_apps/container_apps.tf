@@ -2,18 +2,17 @@ resource "azurerm_container_app" "conapp" {
     for_each = local.container_apps
     
     name = each.value.name
-    container_app_environment_id = each.value.container_app_environment_id
-    resource_group_name = each.value.resource_group_name
-    revision_mode = each.value.revision_mode
-
+    container_app_environment_id = azurerm_container_app_environment.conapp-environment.id
+    resource_group_name = "${var.environment}-rg"
+    revision_mode = var.revision_mode
 #For top-level arguments that are not nested within dynamic blocks, we must write out the full chain
 #as detailed below in our nested "container" block:
     template {
       container {
         name = each.value.template.container.name
         image = each.value.template.container.image
-        cpu = each.value.template.container.cpu
-        memory = each.value.template.container.memory
+        cpu = var.container_cpu
+        memory = var.container_memory
       
         dynamic "env" {
           for_each = each.value.template.container.env
@@ -29,7 +28,7 @@ resource "azurerm_container_app" "conapp" {
           for_each = each.value.template.custom_scale_rule == null ? [] : [each.value.template.custom_scale_rule]
           content {
             name             = custom_scale_rule.value.name
-            custom_rule_type = custom_scale_rule.value.custom_rule_type
+            custom_rule_type = "cpu"
             metadata         = custom_scale_rule.value.metadata
           }
         }
@@ -42,14 +41,14 @@ resource "azurerm_container_app" "conapp" {
       content {
         external_enabled = ingress.value.external_enabled
         target_port      = ingress.value.target_port
-        transport        = ingress.value.transport
+        transport        = "auto"
         fqdn             = ingress.value.fqdn
       
       dynamic "traffic_weight" {
         for_each = ingress.value.traffic_weight
         content {
-          latest_revision = traffic_weight.value.latest_revision
-          percentage      = traffic_weight.value.percentage
+          latest_revision = true
+          percentage      = var.traffic_weight
         }
       }
     }
