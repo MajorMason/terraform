@@ -5,7 +5,7 @@
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="3" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=7;align=center;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="80" y="160" width="600" height="440" as="geometry"/>
+                    <mxGeometry x="80" y="160" width="680" height="440" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;arcSize=7;glass=0;" vertex="1" parent="1">
                     <mxGeometry x="120" y="230" width="400" height="330" as="geometry"/>
@@ -19,7 +19,7 @@
                 <mxCell id="9" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;arcSize=11;glass=0;" vertex="1" parent="1">
                     <mxGeometry x="120" y="290" width="220" height="270" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;container app&lt;br&gt;environment&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/other/Container_App_Environments.svg;" vertex="1" parent="1">
+                <mxCell id="10" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Container App&lt;br&gt;Environment&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/other/Container_App_Environments.svg;" vertex="1" parent="1">
                     <mxGeometry x="140.25" y="300" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;prothonotary fe&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/other/Worker_Container_App.svg;" vertex="1" parent="1">
@@ -48,6 +48,44 @@
                 </mxCell>
                 <mxCell id="17" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;repository DB&lt;/span&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/SQL_Database.svg;" vertex="1" parent="1">
                     <mxGeometry x="411" y="458" width="28.5" height="38" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" style="edgeStyle=none;html=1;entryX=-0.007;entryY=0.451;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="12" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" style="edgeStyle=none;html=1;entryX=-0.007;entryY=0.531;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="11" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;public users&lt;/font&gt;" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.user;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="382" width="30" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" style="edgeStyle=none;html=1;entryX=-0.089;entryY=0.439;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="24" target="12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" style="edgeStyle=none;html=1;entryX=-0.002;entryY=0.564;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="24" target="11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;arcSize=11;glass=0;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="230" width="130" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;tfstate&lt;br&gt;blob-container&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Storage_Container.svg;" vertex="1" parent="1">
+                    <mxGeometry x="576.54" y="310" width="36.92" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Storage&lt;br&gt;Account&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/storage/Storage_Accounts.svg;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="235" width="31.25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;tfvars&lt;br&gt;blob-container&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Storage_Container.svg;" vertex="1" parent="1">
+                    <mxGeometry x="576.54" y="400" width="36.92" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;log analytics&lt;br&gt;workspace&lt;/font&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/analytics/Log_Analytics_Workspaces.svg;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="160" width="30.25" height="30.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" style="edgeStyle=none;html=1;entryX=0.016;entryY=0.46;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="10" target="32">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="315"/>
+                            <mxPoint x="310" y="174"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
