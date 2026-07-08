@@ -1,13 +1,20 @@
 #Network module
 #Contains: Vnet, Subnet, Public IP, DNS Zones
 module "virtual_network" {
-  source                   = "./modules/network"
-  location                 = var.location
-  vnet_name                = var.vnet_name
-  address_space            = var.address_space
-  environment              = var.environment
-  subnet_name              = var.subnet_name
-  private_address_prefix   = var.private_address_prefix
+  source      = "./modules/network"
+  location    = var.location
+  environment = var.environment
+  #VNET
+  vnet_name     = var.vnet_name
+  address_space = var.address_space
+  #VNET Monitor
+  address_space_monitor = var.address_space_monitor
+  #Private_Subnet
+  subnet_name            = var.subnet_name
+  private_address_prefix = var.private_address_prefix
+  #Private_Subnet_Monitor
+  private_address_prefix_monitor = var.private_address_prefix_monitor
+  #Private Endpoints
   azurerm_mssql_server_id  = var.azurerm_mssql_server_id
   azurerm_container_app_id = var.azurerm_container_app_id
 }

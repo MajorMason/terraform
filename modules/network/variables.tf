@@ -14,8 +14,10 @@ variable "environment" {
 variable "vnet_name" {
   type = string
 }
-
 variable "address_space" {
+  type = list(string)
+}
+variable "address_space_monitor" {
   type = list(string)
 }
 
@@ -23,8 +25,10 @@ variable "address_space" {
 variable "subnet_name" {
   type = string
 }
-
 variable "private_address_prefix" {
+  type = list(string)
+}
+variable "private_address_prefix_monitor" {
   type = list(string)
 }
 

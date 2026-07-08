@@ -24,12 +24,18 @@ variable "vnet_name" {
 variable "address_space" {
   type = list(string)
 }
+variable "address_space_monitor" {
+  type = list(string)
+}
 
 #Subnet
 variable "subnet_name" {
   type = string
 }
 variable "private_address_prefix" {
+  type = list(string)
+}
+variable "private_address_prefix_monitor" {
   type = list(string)
 }
 
