@@ -11,7 +11,7 @@ locals {
                 image = "majormason/mysite:countysuite_api"
             env = {
                 name  = "SQL_SERVER"
-                value = "${var.environment}-sql.database.windows.net"
+                value = "Server=tcp:${var.environment}-sql.database.windows.net,1433;Initial Catalog=${var.db_name};User ID=${var.db_user};Password=${var.db_password};Encrypt=True;"
             }
         }
             custom_scale_rule = {

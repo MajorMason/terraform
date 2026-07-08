@@ -54,6 +54,9 @@ module "container_apps" {
   infrastructure_subnet_id   = var.infrastructure_subnet_id
   traffic_weight             = var.traffic_weight
   #CountySuite API
+  db_name         = var.db_name
+  db_user         = var.db_user
+  db_password     = var.db_password
   conapp_api_port = var.conapp_api_port
   #Prothonotary FE
   conapp_prothonotary_port = var.conapp_prothonotary_port
