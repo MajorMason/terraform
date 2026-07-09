@@ -16,17 +16,14 @@ locals {
         azuresql_zone_vnet_link = {
             name = "azuresql_zone_vnet_link"
             private_dns_zone_name = azurerm_private_dns_zone.dns_zones
-            virtual_network_id = azurerm_virtual_network.vnet.id
         }
         conappbe_zone_vnet_link = {
             name = "conappapi_zone_vnet_link"
             private_dns_zone_name = azurerm_private_dns_zone.dns_zones
-            virtual_network_id = azurerm_virtual_network.vnet.id
         }
         ampls_zone_vnet_link = {
             name = "ampls_zone_vnet_link"
             private_dns_zone_name = azurerm_private_dns_zone.dns_zones
-            virtual_network_id = azurerm_virtual_network.vnet-monitor.id
         }
     }
 #Terraform treats our locals as plain maps, and as such, the keys like "private_service_connection" can be shortened to just "psc"
