@@ -5,7 +5,7 @@ resource "azurerm_private_endpoint" "private_endpoints" {
   name                = each.value.name
   location            = var.location
   resource_group_name = "${var.environment}-rg"
-  subnet_id           = azurerm_subnet.private-subnet.id
+  subnet_id           = each.value.subnet_id
 #The private connection resource ID string is used instead of "alias" since we're targeting our own SQL Server in the same subscription (even with our multi-subscription setup)
 #The manual_connection boolean is set to false since we've not connecting to another tenant, nor subscription in our use case
   private_service_connection {

@@ -16,20 +16,24 @@ locals {
         azuresql_zone_vnet_link = {
             name = "azuresql_zone_vnet_link"
             private_dns_zone_name = azurerm_private_dns_zone.dns_zones
+            virtual_network_id = azurerm_virtual_network.vnet.id
         }
         conappbe_zone_vnet_link = {
             name = "conappapi_zone_vnet_link"
             private_dns_zone_name = azurerm_private_dns_zone.dns_zones
+            virtual_network_id = azurerm_virtual_network.vnet.id
         }
         ampls_zone_vnet_link = {
             name = "ampls_zone_vnet_link"
             private_dns_zone_name = azurerm_private_dns_zone.dns_zones
+            virtual_network_id = azurerm_virtual_network.vnet-monitor.id
         }
     }
 #Terraform treats our locals as plain maps, and as such, the keys like "private_service_connection" can be shortened to just "psc"
     private_endpoints = {
         pe_azuresql = {
             name = "${var.environment}-pe-azuresql"
+            subnet_id = azurerm_subnet.private-subnet.id
             psc = {
                 name                           = "private_endpoint_azuresql"
                 subresource_names              = ["sqlServer"]
@@ -42,6 +46,7 @@ locals {
         }
         pe_conapp_api = {
             name = "${var.environment}-pe-conapp-api"
+            subnet_id = azurerm_subnet.private-subnet.id
             psc = {
                 name                           = "private_endpoint_conapp_api"
                 subresource_names              = ["containerapps"]
@@ -54,6 +59,7 @@ locals {
         }
         pe_ampls = {
             name = "${var.environment}-pe-ampls"
+            subnet_id = azurerm_subnet.private-subnet-monitor.id
             psc = {
                 name                           = "private_endpoint_ampls"
                 subresource_names              = ["azuremonitor"]

@@ -17,5 +17,5 @@ resource "azurerm_private_dns_zone_virtual_network_link" "vnet_links" {
   name                  = each.value.name
   resource_group_name   = "${var.environment}-rg"
   private_dns_zone_name = each.value.private_dns_zone_name
-  virtual_network_id    = azurerm_virtual_network.vnet.id
+  virtual_network_id    = each.value.virtual_network_id
 }
