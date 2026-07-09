@@ -6,7 +6,12 @@ locals {
         conapp_api_zone = {
             name = "privatelink.eastus.azurecontainerapps.io"
         }
+        ampls_zone = {
+            name = "privatelink.monitor.azure.com"
+        }
     }
+#We must use the generic top-level reference name of "dns_zones" in each "private_dns_zone_name" argument below because
+#we cannot reference each name directly and explicitly due to the structure. Terraform will automatically choose which one it needs based off the dns zone's DNS
     vnet_links = {
         azuresql_zone_vnet_link = {
             name = "azuresql_zone_vnet_link"
@@ -14,6 +19,10 @@ locals {
         }
         conappbe_zone_vnet_link = {
             name = "conappapi_zone_vnet_link"
+            private_dns_zone_name = azurerm_private_dns_zone.dns_zones
+        }
+        ampls_zone_vnet_link = {
+            name = "ampls_zone_vnet_link"
             private_dns_zone_name = azurerm_private_dns_zone.dns_zones
         }
     }
@@ -41,6 +50,18 @@ locals {
             }
             private_dns_zone_group = {
                 name = "conapp_api_dns_zone_group"
+            }
+        }
+        pe_ampls = {
+            name = "${var.environment}-pe-ampls"
+            psc = {
+                name                           = "private_endpoint_ampls"
+                subresource_names              = ["azuremonitor"]
+                private_connection_resource_id = var.azurerm_log_analytics_workspace_id
+                request_message = "Connection incoming from Log Analytics Workspace"
+            }
+            private_dns_zone_group = {
+                name = "ampls_dns_zone_group"
             }
         }
     }

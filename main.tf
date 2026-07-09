@@ -15,8 +15,9 @@ module "virtual_network" {
   #Private_Subnet_Monitor
   private_address_prefix_monitor = var.private_address_prefix_monitor
   #Private Endpoints
-  azurerm_mssql_server_id  = var.azurerm_mssql_server_id
-  azurerm_container_app_id = var.azurerm_container_app_id
+  azurerm_mssql_server_id            = var.azurerm_mssql_server_id
+  azurerm_container_app_id           = var.azurerm_container_app_id
+  azurerm_log_analytics_workspace_id = var.azurerm_log_analytics_workspace_id
 }
 
 #Keyvault
@@ -57,7 +58,7 @@ module "container_apps" {
   revision_mode              = var.revision_mode
   container_cpu              = var.container_cpu
   container_memory           = var.container_memory
-  log_analytics_workspace_id = var.log_analytics_workspace_id
+  log_analytics_workspace_id = var.azurerm_log_analytics_workspace_id
   infrastructure_subnet_id   = var.infrastructure_subnet_id
   traffic_weight             = var.traffic_weight
   #CountySuite API

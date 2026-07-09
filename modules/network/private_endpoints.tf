@@ -1,4 +1,4 @@
-#This Private Endpoint connects our Azure SQL Server to our VNET
+#The private endpoints allow resources like our MSSQL Server and BE Conapp API to connect securely to our VNET and communicate with each other
 resource "azurerm_private_endpoint" "private_endpoints" {
   for_each = local.private_endpoints
 
@@ -25,4 +25,17 @@ resource "azurerm_private_endpoint" "private_endpoints" {
   tags = {
     environment = var.environment
   }
+}
+
+#AMPLS Resources for Log Analytics Workspace to securely use VNET Monitor
+resource "azurerm_monitor_private_link_scope" "ampls" {
+  name                = "${var.environment}-ampls"
+  resource_group_name = "${var.environment}-rg"
+}
+
+resource "azurerm_monitor_private_link_scoped_service" "ampls-service" {
+  name                = "${var.environment}-amplsservice"
+  resource_group_name = "${var.environment}-rg"
+  scope_name          = azurerm_monitor_private_link_scope.ampls.name
+  linked_resource_id  = var.azurerm_log_analytics_workspace_id
 }

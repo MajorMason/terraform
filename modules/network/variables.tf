@@ -33,6 +33,10 @@ variable "private_address_prefix_monitor" {
 }
 
 #Output Variables
+#Monitoring
+variable "azurerm_log_analytics_workspace_id" {
+  type = string
+}
 #SQL Server
 variable "azurerm_mssql_server_id" {
   type = string

@@ -141,7 +141,7 @@ variable "retention" {
 
 #Output Variables
 #Log Analytics
-variable "log_analytics_workspace_id" {
+variable "azurerm_log_analytics_workspace_id" {
   type = string
 }
 #Subnet
