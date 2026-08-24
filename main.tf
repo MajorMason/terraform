@@ -39,17 +39,28 @@ module "storage_account" {
 
 #SQL Server & DBs
 module "sql_server" {
-  source         = "./modules/sql_server"
-  sql_version    = var.sql_version
-  sql_login      = var.sql_login
-  sql_pass       = var.sql_pass
-  entraid_login  = var.entraid_login
-  object_id      = var.object_id
-  license_type   = var.license_type
-  max_size_gb    = var.max_size_gb
-  sql_sku_name   = var.sql_sku_name
-  zone_redundant = var.zone_redundant
-  sql_lock       = var.sql_lock
+  source        = "./modules/sql_server"
+  sql_lock      = var.sql_lock
+  sql_version   = var.sql_version
+  sql_login     = var.sql_login
+  sql_pass      = var.sql_pass
+  entraid_login = var.entraid_login
+  object_id     = var.object_id
+  #Database Common
+  license_type      = var.license_type
+  max_size_gb       = var.max_size_gb
+  sql_sku_name      = var.sql_sku_name
+  zone_redundant    = var.zone_redundant
+  retention_days    = var.retention_days
+  weekly_retention  = var.weekly_retention
+  monthly_retention = var.monthly_retention
+  week_of_year      = var.week_of_year
+  #Primary Database
+  primary_backup_interval  = var.primary_backup_interval
+  primary_yearly_retention = var.primary_yearly_retention
+  #Repository Database
+  repo_backup_interval  = var.repo_backup_interval
+  repo_yearly_retention = var.repo_yearly_retention
 }
 
 #Container Apps
