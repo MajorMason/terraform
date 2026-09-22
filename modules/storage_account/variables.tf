@@ -22,3 +22,9 @@ variable "account_tier" {
 variable "replication_type" {
     type = string
 }
+
+#Output Variables
+#Container Apps
+variable "container_app_environment_id" {
+  type = string
+}

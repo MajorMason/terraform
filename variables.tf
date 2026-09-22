@@ -168,6 +168,10 @@ variable "retention" {
 }
 
 #Output Variables
+#Container Apps
+variable "container_app_environment_id" {
+  type = string
+}
 #Log Analytics
 variable "azurerm_log_analytics_workspace_id" {
   type = string
@@ -181,5 +185,9 @@ variable "azurerm_mssql_server_id" {
   type = string
 }
 variable "azurerm_container_app_id" {
+  type = string
+}
+#Storage
+variable "environment_storage_link_name" {
   type = string
 }

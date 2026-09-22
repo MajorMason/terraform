@@ -6,12 +6,21 @@ locals {
             type = "SystemAssigned"
         }
         template = {
+            volume = {
+                name         = "file-share-volume"
+                storage_type = "AzureFile"
+                storage_name = var.environment_storage_link_name
+            }
             container = {
                 name = "${var.environment}-countysuite-api"
                 image = "majormason/mysite:countysuite_api"
             env = {
                 name  = "SQL_SERVER"
                 value = "Server=tcp:${var.environment}-sql.database.windows.net,1433;Initial Catalog=${var.db_name};User ID=${var.db_user};Password=${var.db_password};Encrypt=True;"
+            }
+            volume_mounts = {
+                name       = "file-share-volume"
+                mount_path = "/app/data"
             }
         }
             custom_scale_rule = {

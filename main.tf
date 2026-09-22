@@ -31,10 +31,11 @@ module "keyvault" {
 
 #Storage Account
 module "storage_account" {
-  source           = "./modules/storage_account"
-  account_kind     = var.account_kind
-  account_tier     = var.account_tier
-  replication_type = var.replication_type
+  source                       = "./modules/storage_account"
+  account_kind                 = var.account_kind
+  account_tier                 = var.account_tier
+  replication_type             = var.replication_type
+  container_app_environment_id = var.container_app_environment_id
 }
 
 #SQL Server & DBs
@@ -73,10 +74,11 @@ module "container_apps" {
   infrastructure_subnet_id   = var.infrastructure_subnet_id
   traffic_weight             = var.traffic_weight
   #CountySuite API
-  db_name         = var.db_name
-  db_user         = var.db_user
-  db_password     = var.db_password
-  conapp_api_port = var.conapp_api_port
+  db_name                       = var.db_name
+  db_user                       = var.db_user
+  db_password                   = var.db_password
+  conapp_api_port               = var.conapp_api_port
+  environment_storage_link_name = var.environment_storage_link_name
   #Prothonotary FE
   conapp_prothonotary_port = var.conapp_prothonotary_port
   conapp_prothonotary_fqdn = var.conapp_prothonotary_fqdn

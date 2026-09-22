@@ -60,3 +60,7 @@ variable "log_analytics_workspace_id" {
 variable "infrastructure_subnet_id" {
   type = string
 }
+#Storage
+variable "environment_storage_link_name" {
+  type = string
+}
