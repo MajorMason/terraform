@@ -1,6 +1,6 @@
 #Network module
 #Contains: Vnet, Subnet, Public IP, DNS Zones
-module "virtual_network" {
+module "network" {
   source      = "./modules/network"
   location    = var.location
   environment = var.environment
@@ -15,9 +15,9 @@ module "virtual_network" {
   #Private_Subnet_Monitor
   private_address_prefix_monitor = var.private_address_prefix_monitor
   #Private Endpoints
-  azurerm_mssql_server_id            = var.azurerm_mssql_server_id
-  azurerm_container_app_id           = var.azurerm_container_app_id
-  azurerm_log_analytics_workspace_id = var.azurerm_log_analytics_workspace_id
+  azurerm_mssql_server_id            = module.sql_server.azurerm_mssql_server_id
+  azurerm_container_app_id           = module.container_apps.azurerm_container_app_id
+  azurerm_log_analytics_workspace_id = module.monitoring.log_analytics_workspace_id
 }
 
 #Keyvault
@@ -35,7 +35,7 @@ module "storage_account" {
   account_kind                 = var.account_kind
   account_tier                 = var.account_tier
   replication_type             = var.replication_type
-  container_app_environment_id = var.container_app_environment_id
+  container_app_environment_id = module.container_apps.container_app_environment_id
 }
 
 #SQL Server & DBs
@@ -70,15 +70,15 @@ module "container_apps" {
   revision_mode              = var.revision_mode
   container_cpu              = var.container_cpu
   container_memory           = var.container_memory
-  log_analytics_workspace_id = var.azurerm_log_analytics_workspace_id
-  infrastructure_subnet_id   = var.infrastructure_subnet_id
+  log_analytics_workspace_id = module.monitoring.log_analytics_workspace_id
+  infrastructure_subnet_id   = module.network.infrastructure_subnet_id
   traffic_weight             = var.traffic_weight
   #CountySuite API
   db_name                       = var.db_name
   db_user                       = var.db_user
   db_password                   = var.db_password
   conapp_api_port               = var.conapp_api_port
-  environment_storage_link_name = var.environment_storage_link_name
+  environment_storage_link_name = module.storage_account.environment_storage_link_name
   #Prothonotary FE
   conapp_prothonotary_port = var.conapp_prothonotary_port
   conapp_prothonotary_fqdn = var.conapp_prothonotary_fqdn
@@ -88,7 +88,7 @@ module "container_apps" {
 }
 
 #Monitoring
-module "log_analytics_workspace" {
+module "monitoring" {
   source    = "./modules/monitoring"
   retention = var.retention
 }
